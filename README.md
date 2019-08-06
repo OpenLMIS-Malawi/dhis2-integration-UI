@@ -1,4 +1,4 @@
-# OpenLMIS Cold Chain Equipment Reference UI Module
+# OpenLMIS DHIS2 Integration UI Module
 This repository is the UI for the [MW DHIS2 Integration Service.](https://github.com/OpenLMIS/mw-dhis2-integration)
 
 ## Prerequisites

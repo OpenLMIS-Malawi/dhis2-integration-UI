@@ -3,8 +3,6 @@
         "/openlmis-auth-ui",
         "/openlmis-referencedata-ui",
         "/openlmis-ui-components",
-        "/openlmis-ui-layout",
-        "/mw-dhis2-integration-ui"
-    ],
-    "cceServiceURL": "/"
+        "/openlmis-ui-layout"
+    ]
 }
