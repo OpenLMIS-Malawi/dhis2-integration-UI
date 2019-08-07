@@ -1,5 +1,5 @@
 # OpenLMIS DHIS2 Integration UI Module
-This repository is the UI for the [MW DHIS2 Integration Service.](https://github.com/OpenLMIS/mw-dhis2-integration)
+This repository is the UI for the [MW DHIS2 Integration Service.](https://github.com/OpenLMIS-Malawi/mw-dhis2-integration)
 
 ## Prerequisites
 * Docker 1.11+
@@ -28,6 +28,8 @@ $ grunt clean bower build --serve
 5. Go to `http://localhost:9000/webapp/` to see the login page.
 
 *Note:* To change the location of where the OpenLMIS-UI attemps to access OpenLMIS, use the command `grunt build  --serve --openlmisServerUrl=<openlmis server url>`.
+
+6. Remember to Add rights to DHIS2 Integration. You can do it by execute [SQL File](https://github.com/OpenLMIS-Malawi/mw-dhis2-integration/blob/master/src/scripts/dhis2_integration_rights.sql) on your RDS instance.
 
 ## Building & Testing
 See the [OpenLMIS/dev-ui project](https://github.com/OpenLMIS/dev-ui) for more information on what commands are available, below are the command you might use during a normal work day.

@@ -19,16 +19,17 @@
 
     angular.module('dhis2Integration').config(routes);
 
-    routes.$inject = ['$stateProvider'];
+    routes.$inject = ['$stateProvider', 'ADMINISTRATION_RIGHTS'];
 
-    function routes($stateProvider) {
+    function routes($stateProvider, ADMINISTRATION_RIGHTS) {
         $stateProvider.state('openlmis.administration.dhis2Integration', {
             // abstract: true,
             showInNavigation: true,
             label: 'dhis2Integration.dhis2Integration',
             template: '<div ui-view></div>',
             url: '/dhis2Integration',
-            controllerAs: 'vm'
+            controllerAs: 'vm',
+            accessRights: [ADMINISTRATION_RIGHTS.DHIS2_MANAGEMENT]
         });
     }
 })();
