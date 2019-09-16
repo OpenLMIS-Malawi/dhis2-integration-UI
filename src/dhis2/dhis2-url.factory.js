@@ -19,38 +19,38 @@
 
     /**
      * @ngdoc service
-     * @name dhis2Integration.dhis2IntegrationUrlFactory
+     * @name dhis2.dhis2UrlFactory
      *
      * @description
-     * Supplies application with dhis2Integration URL.
+     * Supplies application with dhis2 URL.
      */
     angular
-        .module('dhis2Integration')
-        .factory('dhis2IntegrationUrlFactory', factory);
+        .module('dhis2')
+        .factory('dhis2UrlFactory', factory);
 
     factory.$inject = ['openlmisUrlFactory', 'pathFactory'];
 
     function factory(openlmisUrlFactory, pathFactory) {
 
-        var dhis2IntegrationUrl = '@@dhis2Integration_SERVICE_URL';
+        var dhis2Url = '@@dhis2_SERVICE_URL';
 
-        if (dhis2IntegrationUrl.substr(0, 2) === '@@') {
-            dhis2IntegrationUrl = '';
+        if (dhis2Url.substr(0, 2) === '@@') {
+            dhis2Url = '';
         }
 
         /**
          * @ngdoc method
-         * @methodOf dhis2Integration.dhis2IntegrationUrlFactory
-         * @name dhis2IntegrationUrlFactory
+         * @methodOf dhis2.dhis2UrlFactory
+         * @name dhis2UrlFactory
          *
          * @description
-         * It parses the given URL and appends dhis2Integration service URL to it.
+         * It parses the given URL and appends dhis2 service URL to it.
          *
-         * @param  {String} url dhis2Integration URL from grunt file
-         * @return {String}     dhis2Integration URL
+         * @param  {String} url dhis2 URL from grunt file
+         * @return {String}     dhis2 URL
          */
         return function(url) {
-            url = pathFactory(dhis2IntegrationUrl, url);
+            url = pathFactory(dhis2Url, url);
             return openlmisUrlFactory(url);
         };
     }

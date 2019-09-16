@@ -18,16 +18,35 @@
     'use strict';
 
     /**
-     * @module
+     * @ngdoc service
+     * @name dhis2-execution.ManualExecution
      *
      * @description
-     * Main dhis2Integration module that provides basic logic.
+     * Represents a single execution item.
      */
-    angular.module('dhis2Integration', [
-        'ui.router',
-        'openlmis-urls',
-        'openlmis-rights',
-        'openlmis-main-state'
-    ]);
+    angular
+        .module('dhis2-execution')
+        .factory('ManualExecution', ManualExecution);
 
+    function ManualExecution() {
+
+        return ManualExecution;
+
+        /**
+         * @ngdoc method
+         * @methodOf dhis2-execution.ManualExecution
+         * @name ManualExecution
+         *
+         * @description
+         * Creates a new instance of the ManualExecution class.
+         *
+         * @param  {Object} json the object that hold manual execution info
+         * @return {Object}      the manual execution object
+         */
+        function ManualExecution(json) {
+            this.facilityId = json.facilityId;
+            this.programId = json.programId;
+            this.periodId = json.periodId;
+        }
+    }
 })();

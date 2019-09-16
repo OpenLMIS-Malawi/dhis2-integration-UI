@@ -17,19 +17,17 @@
 
     'use strict';
 
-    angular.module('dhis2Integration').config(routes);
+    /**
+     * @module
+     *
+     * @description
+     * Main dhis2 module that provides basic logic.
+     */
+    angular.module('dhis2', [
+        'ui.router',
+        'openlmis-urls',
+        'openlmis-rights',
+        'openlmis-main-state'
+    ]);
 
-    routes.$inject = ['$stateProvider', 'ADMINISTRATION_RIGHTS'];
-
-    function routes($stateProvider, ADMINISTRATION_RIGHTS) {
-        $stateProvider.state('openlmis.administration.dhis2Integration', {
-            // abstract: true,
-            showInNavigation: true,
-            label: 'dhis2Integration.dhis2Integration',
-            template: '<div ui-view></div>',
-            url: '/dhis2Integration',
-            controllerAs: 'vm',
-            accessRights: [ADMINISTRATION_RIGHTS.DHIS2_MANAGEMENT]
-        });
-    }
 })();
