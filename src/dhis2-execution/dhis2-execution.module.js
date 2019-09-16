@@ -31,7 +31,6 @@
         'referencedata-program',
         'referencedata-facility',
         'referencedata-user',
-        'referencedata-geographic-zone',
         'dhis2'
     ]);
 
