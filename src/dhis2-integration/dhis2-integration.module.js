@@ -18,41 +18,20 @@
     'use strict';
 
     /**
-     * @ngdoc service
-     * @name dhis2.dhis2UrlFactory
+     * @module dhis2-integration
      *
      * @description
-     * Supplies application with dhis2 URL.
+     * Responsible for providing integration service.
      */
-    angular
-        .module('dhis2')
-        .factory('dhis2UrlFactory', factory);
-
-    factory.$inject = ['openlmisUrlFactory', 'pathFactory'];
-
-    function factory(openlmisUrlFactory, pathFactory) {
-
-        var dhis2Url = '@@DHIS2_SERVICE_URL';
-
-        if (dhis2Url.substr(0, 2) === '@@') {
-            dhis2Url = '';
-        }
-
-        /**
-         * @ngdoc method
-         * @methodOf dhis2.dhis2UrlFactory
-         * @name dhis2UrlFactory
-         *
-         * @description
-         * It parses the given URL and appends dhis2 service URL to it.
-         *
-         * @param  {String} url dhis2 URL from grunt file
-         * @return {String}     dhis2 URL
-         */
-        return function(url) {
-            url = pathFactory(dhis2Url, url);
-            return openlmisUrlFactory(url);
-        };
-    }
+    angular.module('dhis2-integration', [
+        'ngResource',
+        'openlmis-config',
+        'openlmis-date',
+        'referencedata',
+        'referencedata-program',
+        'referencedata-facility',
+        'referencedata-user',
+        'dhis2'
+    ]);
 
 })();

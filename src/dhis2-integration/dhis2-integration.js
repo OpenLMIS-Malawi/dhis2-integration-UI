@@ -19,40 +19,35 @@
 
     /**
      * @ngdoc service
-     * @name dhis2.dhis2UrlFactory
+     * @name dhis2-integration.Integration
      *
      * @description
-     * Supplies application with dhis2 URL.
+     * Represents a single integration item.
      */
     angular
-        .module('dhis2')
-        .factory('dhis2UrlFactory', factory);
+        .module('dhis2-integration')
+        .factory('Integration', Integration);
 
-    factory.$inject = ['openlmisUrlFactory', 'pathFactory'];
+    function Integration() {
 
-    function factory(openlmisUrlFactory, pathFactory) {
-
-        var dhis2Url = '@@DHIS2_SERVICE_URL';
-
-        if (dhis2Url.substr(0, 2) === '@@') {
-            dhis2Url = '';
-        }
+        return Integration;
 
         /**
          * @ngdoc method
-         * @methodOf dhis2.dhis2UrlFactory
-         * @name dhis2UrlFactory
+         * @methodOf dhis2-integration.Integration
+         * @name Integration
          *
          * @description
-         * It parses the given URL and appends dhis2 service URL to it.
+         * Creates a new instance of the Integration class.
          *
-         * @param  {String} url dhis2 URL from grunt file
-         * @return {String}     dhis2 URL
+         * @param  {Object} json the object that hold integration info
+         * @return {Object}      the integration object
          */
-        return function(url) {
-            url = pathFactory(dhis2Url, url);
-            return openlmisUrlFactory(url);
-        };
+        function Integration(json) {
+            this.id = json.id;
+            this.programId = json.programId;
+            this.cronExpression = json.cronExpression;
+            this.configuration = json.configuration;
+        }
     }
-
 })();

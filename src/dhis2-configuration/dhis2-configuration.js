@@ -19,40 +19,35 @@
 
     /**
      * @ngdoc service
-     * @name dhis2.dhis2UrlFactory
+     * @name dhis2-configuration.Configuration
      *
      * @description
-     * Supplies application with dhis2 URL.
+     * Represents a single configuration item.
      */
     angular
-        .module('dhis2')
-        .factory('dhis2UrlFactory', factory);
+        .module('dhis2-configuration')
+        .factory('Configuration', Configuration);
 
-    factory.$inject = ['openlmisUrlFactory', 'pathFactory'];
+    function Configuration() {
 
-    function factory(openlmisUrlFactory, pathFactory) {
-
-        var dhis2Url = '@@DHIS2_SERVICE_URL';
-
-        if (dhis2Url.substr(0, 2) === '@@') {
-            dhis2Url = '';
-        }
+        return Configuration;
 
         /**
-         * @ngdoc method
-         * @methodOf dhis2.dhis2UrlFactory
-         * @name dhis2UrlFactory
+         * @ngdoc methods
+         * @methodOf dhis2-configuration.Configuration
+         * @name Configuration
          *
          * @description
-         * It parses the given URL and appends dhis2 service URL to it.
+         * Creates a new instance of the Configuration class.
          *
-         * @param  {String} url dhis2 URL from grunt file
-         * @return {String}     dhis2 URL
+         * @param  {Object} json the object that hold configuration info
+         * @return {Object}      the configuration object
          */
-        return function(url) {
-            url = pathFactory(dhis2Url, url);
-            return openlmisUrlFactory(url);
-        };
+        function Configuration(json) {
+            this.id = json.id;
+            this.name = json.name;
+            this.targetUrl = json.targetUrl;
+            this.authenticationDetails = json.authenticationDetails;
+        }
     }
-
 })();

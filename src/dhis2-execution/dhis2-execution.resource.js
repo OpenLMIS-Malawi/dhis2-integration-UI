@@ -19,40 +19,29 @@
 
     /**
      * @ngdoc service
-     * @name dhis2.dhis2UrlFactory
+     * @name dhis2-execution.ExecutionResource
      *
      * @description
-     * Supplies application with dhis2 URL.
+     * Implementation of the ExecutionResource interface. Communicates with the REST API of the OpenLMIS
+     * server.
      */
+
     angular
-        .module('dhis2')
-        .factory('dhis2UrlFactory', factory);
+        .module('dhis2-execution')
+        .factory('ExecutionResource', ExecutionResource);
 
-    factory.$inject = ['openlmisUrlFactory', 'pathFactory'];
+    ExecutionResource.$inject = ['OpenlmisResource', 'classExtender'];
 
-    function factory(openlmisUrlFactory, pathFactory) {
+    function ExecutionResource(OpenlmisResource, classExtender) {
 
-        var dhis2Url = '@@DHIS2_SERVICE_URL';
+        classExtender.extend(ExecutionResource, OpenlmisResource);
 
-        if (dhis2Url.substr(0, 2) === '@@') {
-            dhis2Url = '';
+        return ExecutionResource;
+
+        function ExecutionResource() {
+            this.super('/api/integrationExecutions', {
+                paginated: true
+            });
         }
-
-        /**
-         * @ngdoc method
-         * @methodOf dhis2.dhis2UrlFactory
-         * @name dhis2UrlFactory
-         *
-         * @description
-         * It parses the given URL and appends dhis2 service URL to it.
-         *
-         * @param  {String} url dhis2 URL from grunt file
-         * @return {String}     dhis2 URL
-         */
-        return function(url) {
-            url = pathFactory(dhis2Url, url);
-            return openlmisUrlFactory(url);
-        };
     }
-
 })();
