@@ -36,12 +36,18 @@
 
         classExtender.extend(ExecutionResource, OpenlmisResource);
 
+        ExecutionResource.prototype.startManualExecution = startManualExecution;
         return ExecutionResource;
 
         function ExecutionResource() {
             this.super('/api/integrationExecutions', {
                 paginated: true
             });
+            this.originalCreate = OpenlmisResource.prototype.create;
+        }
+
+        function startManualExecution(ManualExecution) {
+            return this.originalCreate(ManualExecution);
         }
     }
 })();

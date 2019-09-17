@@ -17,7 +17,10 @@ describe('ExecutionResource', function() {
 
     beforeEach(function() {
         this.OpenlmisResourceMock = jasmine.createSpy('OpenlmisResource');
-
+        this.create = jasmine.createSpy('create');
+        this.OpenlmisResourceMock.prototype.create = this.create;
+        // this.startManualExecution = jasmine.createSpy('startManualExecution');
+        // this.OpenlmisResourceMock.prototype.startManualExecution = this.startManualExecution;
         var OpenlmisResourceMock = this.OpenlmisResourceMock;
         module('dhis2-execution', function($provide) {
             $provide.factory('OpenlmisResource', function() {
@@ -27,7 +30,12 @@ describe('ExecutionResource', function() {
 
         inject(function($injector) {
             this.ExecutionResource = $injector.get('ExecutionResource');
+            this.ManualExecutionDataBuilder = $injector.get('ManualExecutionDataBuilder');
+            this.$rootScope = $injector.get('$rootScope');
+            this.$q = $injector.get('$q');
         });
+
+        this.create.andReturn(this.$q.resolve());
     });
 
     it('should extend OpenlmisResource', function() {
@@ -37,4 +45,15 @@ describe('ExecutionResource', function() {
             paginated: true
         });
     });
+
+    it('should start manual execution', function() {
+        this.ManualExecution = new this.ManualExecutionDataBuilder().build();
+
+        new this.ExecutionResource()
+            .startManualExecution(this.ManualExecution);
+        this.$rootScope.$apply();
+
+        expect(this.create).toHaveBeenCalledWith(this.ManualExecution);
+    });
+
 });
