@@ -2,7 +2,3 @@
 <h3>{{'dhis2.service' | message}}: {{vm.user.username}}</h3>
 <ng-include src="'dhis2/dhis2-tabs.html'"></ng-include>
 <div ui-view=""></div>
-<div class="openlmis-toolbar">
-    <input type="button" ng-click="vm.saveUserRoles()" class="primary" value="{{'adminUserRoles.saveUserRoles' | message}}"/>
-    <input type="button" ng-click="vm.goToUserList()" value="{{'adminUserRoles.cancel' | message}}">
-</div>
