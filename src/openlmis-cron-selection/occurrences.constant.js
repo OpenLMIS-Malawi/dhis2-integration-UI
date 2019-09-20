@@ -18,18 +18,18 @@
     'use strict';
 
     /**
-     * @module
+     * @ngdoc object
+     * @name openlmis-cron-selection.SIMPLE_CRON_REGEX
      *
      * @description
-     * Main dhis2 module that provides basic logic.
+     * Stores keys for possible occurrences.
      */
-    angular.module('dhis2', [
-        'ui.router',
-        'openlmis-urls',
-        'openlmis-rights',
-        'openlmis-main-state',
-        'openlmis-sort',
-        'referencedata-program'
-    ]);
+    angular
+        .module('openlmis-cron-selection')
+        .constant('OCCURRENCES', {
+            DAILY: 'openlmisCronSelection.daily',
+            WEEKLY: 'openlmisCronSelection.weekly',
+            MONTHLY: 'openlmisCronSelection.monthly'
+        });
 
 })();

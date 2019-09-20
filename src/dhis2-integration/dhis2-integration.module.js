@@ -31,6 +31,7 @@
         'referencedata-program',
         'referencedata-facility',
         'referencedata-user',
+        'openlmis-cron-selection',
         'dhis2'
     ]);
 

@@ -1,0 +1,74 @@
+<section class="openlmis-table-container">
+<openlmis-sort options="vm.options"/>
+    <form ng-submit="vm.search()">
+        <fieldset class="form-group">
+            <label for="status">{{'dhis2.status' | message}}</label>
+            <select id="status" ng-model="vm.selectedStatus"
+                ng-options="status for status in vm.status"
+                no-auto-select="true">
+            </select>
+        </fieldset>
+        <input type="submit" value="{{'adminUserList.search'|message}}"/>
+    </form>
+    <table>
+        <!-- <caption ng-if="!vm.Execution || vm.Execution.length === 0">
+            {{'dhis2.noExecutions' | message}}
+        </caption> -->
+        <thead>
+            <tr>
+                <th ng-if="vm.showErrorColumn"></th>
+                <th>{{'dhis2.submissionDate' | message}}</th>
+                <th>{{'dhis2.relevantPeriod' | message}}</th>
+                <th>{{'dhis2.result' | message}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td ng-if="vm.showErrorColumn && roleAssignment.errors.length"
+                    class="role-assignment-invalid"
+                    popover-template="admin-user-roles/role-assignment-errors-popover.html">
+                </td>
+                <td ng-if="vm.showErrorColumn && !roleAssignment.errors.length"></td>
+                <td popover-template="dhis2-execution/dhis2-execution-response-popover.html"
+                popover-title="{{'dhis2.showResponse' | message}}">19/09/2019</td>
+                <td popover-template="dhis2-execution/dhis2-execution-response-popover.html"
+                popover-title="{{'dhis2.showResponse' | message}}">SEPTEMBER</td>
+                <td popover-template="dhis2-execution/dhis2-execution-response-popover.html"
+                popover-title="{{'dhis2.showResponse' | message}}">Successfull</td>
+            </tr>
+            <tr>
+                <td ng-if="vm.showErrorColumn && roleAssignment.errors.length"
+                    class="role-assignment-invalid"
+                    popover-template="admin-user-roles/role-assignment-errors-popover.html">
+                </td>
+                <td ng-if="vm.showErrorColumn && !roleAssignment.errors.length"></td>
+                <td popover-template="dhis2-execution/dhis2-execution-response-popover-testowy.html"
+                popover-title="{{'dhis2.showResponse' | message}}">19/10/2019</td>
+                <td popover-template="dhis2-execution/dhis2-execution-response-popover-testowy.html"
+                popover-title="{{'dhis2.showResponse' | message}}">OCTOBER</td>
+                <td popover-template="dhis2-execution/dhis2-execution-response-popover-testowy.html"
+                popover-title="{{'dhis2.showResponse' | message}}" style="color:red">Unsuccessfull</td>
+            </tr>
+
+            <!-- <tr ng-repeat="roleAssignment in vm.items | orderBy : '$name'">
+                <td ng-if="vm.showErrorColumn && roleAssignment.errors.length"
+                    class="role-assignment-invalid"
+                    popover-template="admin-user-roles/role-assignment-errors-popover.html">
+                </td>
+                <td ng-if="vm.showErrorColumn && !roleAssignment.errors.length"></td>
+                <td>{{roleAssignment.programName}}</td>
+                <td>{{roleAssignment.supervisoryNodeName}}</td>
+                <td popover-template="admin-user-roles/user-role-right-popover.html"
+                    popover-title="{{'dhis2.assignedRights' | message}}">
+                    {{roleAssignment.roleName}}
+                </td>
+                <td>
+                    <button class="danger" ng-click="vm.removeRole(roleAssignment)">{{'dhis2.removeRole.label' | message}}</button>
+                </td>
+            </tr> -->
+        </tbody>
+    </table>
+    <openlmis-pagination
+        list="vm.Execution"
+        paged-list="vm.items"/>
+</section>

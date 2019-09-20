@@ -18,18 +18,21 @@
     'use strict';
 
     /**
-     * @module
+     * @ngdoc object
+     * @name openlmis-cron-selection.WEEKDAYS
      *
      * @description
-     * Main dhis2 module that provides basic logic.
+     * Stores keys for weekday messages.
      */
-    angular.module('dhis2', [
-        'ui.router',
-        'openlmis-urls',
-        'openlmis-rights',
-        'openlmis-main-state',
-        'openlmis-sort',
-        'referencedata-program'
-    ]);
-
+    angular
+        .module('openlmis-cron-selection')
+        .constant('WEEKDAYS', [
+            'openlmisCronSelection.sunday',
+            'openlmisCronSelection.monday',
+            'openlmisCronSelection.tuesday',
+            'openlmisCronSelection.wednesday',
+            'openlmisCronSelection.thursday',
+            'openlmisCronSelection.friday',
+            'openlmisCronSelection.saturday'
+        ]);
 })();

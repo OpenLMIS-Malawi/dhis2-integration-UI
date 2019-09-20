@@ -1,0 +1,24 @@
+<h4>For manual execution Integration to DHIS-2 Integration Layer, please fill below and click "{{'dhis2.startIntegration' | message}}"</h4>
+<form class="form-inline" ng-submit="vm.addRole()" reload-form>
+    <div class="form-group">
+        <label for="program">{{'dhis2.program' | message}}</label>
+        <select id="program" ng-model="vm.selectedProgram"
+            ng-options="program as program.name for program in vm.programs"
+            required>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="period">{{'dhis2.period' | message}}</label>
+        <select id="period" ng-model="vm.selectedPeriod"
+            ng-options="period as period for period in vm.periods"
+            required>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="period">{{'dhis2.description' | message}}</label>
+        <input type="text" id="manual-execution-description" ng-model="vm.manualExecutionDescription"></input>
+    </div>
+    <button type="text" class="add">{{'dhis2.startIntegration' | message}}</button>
+</form>

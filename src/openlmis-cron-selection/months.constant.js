@@ -18,18 +18,26 @@
     'use strict';
 
     /**
-     * @module
+     * @ngdoc object
+     * @name openlmis-cron-selection.MONTHS
      *
      * @description
-     * Main dhis2 module that provides basic logic.
+     * Stores keys for weekday messages.
      */
-    angular.module('dhis2', [
-        'ui.router',
-        'openlmis-urls',
-        'openlmis-rights',
-        'openlmis-main-state',
-        'openlmis-sort',
-        'referencedata-program'
-    ]);
+    angular
+        .module('openlmis-cron-selection')
+        .constant('MONTHS', [
+            'openlmisCronSelection.january',
+            'openlmisCronSelection.february',
+            'openlmisCronSelection.march',
+            'openlmisCronSelection.april',
+            'openlmisCronSelection.may',
+            'openlmisCronSelection.june',
+            'openlmisCronSelection.august',
+            'openlmisCronSelection.september',
+            'openlmisCronSelection.october',
+            'openlmisCronSelection.november',
+            'openlmisCronSelection.december'
 
+        ]);
 })();

@@ -23,13 +23,43 @@
 
     function routes($stateProvider, ADMINISTRATION_RIGHTS) {
         $stateProvider.state('openlmis.administration.dhis2', {
-            // abstract: true,
             showInNavigation: true,
             label: 'dhis2.dhis2',
-            template: '<div ui-view></div>',
             url: '/dhis2',
-            controllerAs: 'vm',
-            accessRights: [ADMINISTRATION_RIGHTS.DHIS2_MANAGEMENT]
+            accessRights: [ADMINISTRATION_RIGHTS.DHIS2_MANAGEMENT],
+            resolve: {
+                programs: function(programService) {
+                    return programService.getAll();
+                }
+            },
+            views: {
+                '@openlmis': {
+                    templateUrl: 'dhis2/dhis2.html',
+                    controller: 'Dhis2TabController',
+                    controllerAs: 'vm'
+                }
+            }
         });
+
+        addStateForTab('dhis2.configuration', '/configuration', 'dhis2-configuration/dhis2-configuration.html');
+        addStateForTab('dhis2.integration', '/integration', 'dhis2-integration/dhis2-integration.html');
+        addStateForTab('dhis2.executions', '/executions', 'dhis2-execution/dhis2-execution.html');
+        addStateForTab('dhis2.manualExecution', '/manualExecution',
+            'dhis2-execution/dhis2-execution-manual.html');
+
+        function addStateForTab(type, url, templateFile) {
+            $stateProvider.state('openlmis.administration.' + type, {
+                label: type,
+                url: url,
+                //controller: 'UserRolesTabController',
+                templateUrl: templateFile,
+                controllerAs: 'vm',
+                resolve: {
+                    tab: function() {
+                        return type;
+                    }
+                }
+            });
+        }
     }
 })();

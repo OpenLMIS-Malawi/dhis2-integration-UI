@@ -1,0 +1,47 @@
+<form class="form-inline" ng-submit="vm.search()">
+    <div class="form-group">
+        <label for="authType">{{'dhis2.authType' | message}}</label>
+        <select id="authType"
+        ng-model="authType"
+        ng-options="authType as authType for authType in vm.authTypes"
+            ></select>
+    </div>
+        
+    <div class="form-group" ng-show="vm.isBearer(authType)" input-control>
+        <label for="token">{{'dhis2.token' | message}}</label>
+        <input id="token"
+            type="text"
+            ng-model="token"
+            ng-required="!ngDisabled && ngRequired && !isComplex"
+            ng-disabled="ngDisabled"/>
+    </div>
+
+    <div class="form-group" ng-show="vm.isBasic(authType)" input-control>
+        <label for="username">{{'dhis2.username' | message}}</label>
+        <input id="username"
+            type="text"
+            ng-model="username"
+            ng-required="!ngDisabled && ngRequired && !isComplex"
+            ng-disabled="ngDisabled"/>
+    </div>
+
+    <div class="form-group" ng-show="vm.isBasic(authType)" input-control>
+        <label for="password">{{'dhis2.password' | message}}</label>
+        <input id="password"
+            type="text"
+            ng-model="password"
+            ng-required="!ngDisabled && ngRequired && !isComplex"
+            ng-disabled="ngDisabled"/>
+    </div>
+
+    <div class="form-group" input-control>
+            <label for="targetUrl">{{'dhis2.targetUrl' | message}}</label>
+            <input id="targetUrl"
+                type="text"
+                ng-model="targetUrl"
+                ng-required="!ngDisabled && ngRequired && !isComplex"
+                ng-disabled="ngDisabled"/>
+        </div>
+    <button type="text" class="add">{{'dhis2.addConfiguration' | message}}</button>
+</form>
+

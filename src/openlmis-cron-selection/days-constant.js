@@ -18,18 +18,22 @@
     'use strict';
 
     /**
-     * @module
+     * @ngdoc object
+     * @name openlmis-cron-selection.DAYS
      *
      * @description
-     * Main dhis2 module that provides basic logic.
+     * Stores keys for day messages.
      */
-    angular.module('dhis2', [
-        'ui.router',
-        'openlmis-urls',
-        'openlmis-rights',
-        'openlmis-main-state',
-        'openlmis-sort',
-        'referencedata-program'
-    ]);
+    angular
+        .module('openlmis-cron-selection')
+        .constant('DAYS', arrayDays());
 
+    function arrayDays() {
+
+        var array = [];
+        for (var xx = 0; xx < 31; xx ++) {
+            array[xx] = xx + 1;
+        }
+        return array;
+    }
 })();

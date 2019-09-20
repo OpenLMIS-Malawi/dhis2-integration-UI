@@ -18,18 +18,15 @@
     'use strict';
 
     /**
-     * @module
+     * @module openlmis-cron-selection
      *
      * @description
-     * Main dhis2 module that provides basic logic.
+     * Provides component for build cron expressions in a user-friendly way.
      */
-    angular.module('dhis2', [
-        'ui.router',
-        'openlmis-urls',
-        'openlmis-rights',
-        'openlmis-main-state',
-        'openlmis-sort',
-        'referencedata-program'
+    angular.module('openlmis-cron-selection', [
+        'openlmis-i18n',
+        'openlmis-templates',
+        'openlmis-form'
     ]);
 
-})();
+}());
