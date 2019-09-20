@@ -7,7 +7,7 @@
             ng-required="!ngDisabled && ngRequired && !isComplex"
             ng-disabled="ngDisabled"></select>
     </div>
-
+    <!-- Malawi: months -->
     <div ng-show="isMonthly(occurrence, occurrences)">{{'openlmisCronSelection.on' | message}}</div>
 
     <div openlmis-invalid
@@ -35,7 +35,7 @@
             ng-disabled="ngDisabled"
             ></select>
     </div>
-
+    <!-- --- ends here --- -->
     <div ng-show="isWeekly(occurrence, occurrences)">{{'openlmisCronSelection.on' | message}}</div>
 
     <div openlmis-invalid

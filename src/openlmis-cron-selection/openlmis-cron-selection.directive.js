@@ -53,14 +53,18 @@
 
         function link(scope, _, __, ngModelCtrl) {
             scope.weekdays = WEEKDAYS;
+            // Malawi: add months
             scope.months = MONTHS;
+            // --- ends here ---
             scope.days = DAYS;
             scope.occurrences = OCCURRENCES;
 
             scope.validateHour = validateHour;
             scope.validateMinute = validateMinute;
             scope.validateCronExpression = validateCronExpression;
+            // Malawi: add months
             scope.isMonthly = isMonthly;
+            // --- ends here ---
             scope.isWeekly = isWeekly;
             scope.isDaily = isDaily;
 
@@ -162,10 +166,11 @@
         return occurrence === OCCURRENCES.WEEKLY;
     }
 
+    // Malawi: add months
     function isMonthly(occurrence, OCCURRENCES) {
         return occurrence === OCCURRENCES.MONTHLY;
     }
-
+    // --- ends here --- 
     function validateHour(hour, isComplex, ngDisabled) {
         if (!ngDisabled && hour && !isComplex && !isBetween(hour, 0, 23)) {
             return 'openlmisCronSelection.hourOutOfRange';

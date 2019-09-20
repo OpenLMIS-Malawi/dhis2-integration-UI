@@ -14,7 +14,7 @@
  */
 
 (function() {
-
+    // Malawi: months
     'use strict';
 
     /**
@@ -40,4 +40,5 @@
             'openlmisCronSelection.december'
 
         ]);
+    // --- ends here ---
 })();

@@ -14,7 +14,7 @@
  */
 
 (function() {
-
+    // Malawi: days
     'use strict';
 
     /**
@@ -36,4 +36,5 @@
         }
         return array;
     }
+    // --- ends here ---
 })();
