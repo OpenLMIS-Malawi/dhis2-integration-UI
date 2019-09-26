@@ -19,18 +19,18 @@
 
     /**
      * @ngdoc controller
-     * @name dhis2-configuration-add-edit-general:ConfigurationAddEditGeneralController
+     * @name dhis2-configuration-add-edit-general:ConfigurationAddEditController
      *
      * @description
      * Controller for managing configuration view screen.
      */
     angular
         .module('dhis2-configuration-edit')
-        .controller('ConfigurationAddEditGeneralController', controller);
+        .controller('ConfigurationAddEditController', controller);
 
-    controller.$inject = ['$state'];
+    controller.$inject = ['$state', 'configuration', 'ConfigurationResource'];
 
-    function controller($state) {
+    function controller($state, configuration, ConfigurationResource) {
 
         var vm = this;
 
@@ -40,37 +40,50 @@
 
         /**
          * @ngdoc method
-         * @propertyOf dhis2-configuration-add-edit-general:ConfigurationAddEditGeneralController
+         * @propertyOf dhis2-configuration-add-edit-general:ConfigurationAddEditController
          * @name $onInit
          *
          * @description
-         * Method that is executed on initiating ConfigurationAddEditGeneralController.
+         * Method that is executed on initiating ConfigurationAddEditController.
          */
         function onInit() {
+            vm.configuration = configuration;
         }
 
         /**
          * @ngdoc method
-         * @methodOf dhis2-configuration-add-edit-general:ConfigurationAddEditGeneralController
+         * @methodOf dhis2-configuration-add-edit-general:ConfigurationAddEditController
          * @name goToConfigurationList
          *
          * @description
          * Redirects to configuration list screen.
          */
-        function goToConfigurationList() {
-            $state.go('openlmis.administration.dhis2.configuration', {}, {});
+        function goToConfigurationList(reload) {
+            $state.go('openlmis.administration.dhis2.configuration', {}, {
+                reload: reload
+            });
         }
 
         /**
          * @ngdoc method
-         * @methodOf dhis2-configuration-add-edit-general:ConfigurationAddEditGeneralController
+         * @methodOf dhis2-configuration-add-edit-general:ConfigurationAddEditController
          * @name saveConfiguration
          *
          * @description
          * Updates the configuration and return to the configuration list on success.
          */
         function saveConfiguration() {
-            $state.go('openlmis.administration.dhis2.configuration', {}, {});
+            var promise;
+
+            if (vm.configuration.id) {
+                promise = new ConfigurationResource().update(vm.configuration);
+            } else {
+                promise = new ConfigurationResource().create(vm.configuration);
+            }
+
+            return promise.then(function() {
+                goToConfigurationList(true);
+            });
         }
 
     }

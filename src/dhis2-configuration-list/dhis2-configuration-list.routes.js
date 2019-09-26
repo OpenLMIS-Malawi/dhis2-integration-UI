@@ -18,29 +18,28 @@
     'use strict';
 
     angular
-        .module('dhis2-configuration-edit')
-        .config(dhis2ConfigurationEditRoutes);
+        .module('dhis2-configuration-list')
+        .config(routes);
 
-    dhis2ConfigurationEditRoutes.$inject = ['modalStateProvider'];
+    routes.$inject = ['$stateProvider'];
 
-    function dhis2ConfigurationEditRoutes(modalStateProvider) {
-
-        modalStateProvider.state('openlmis.administration.dhis2.configuration.edit', {
-            controller: 'ConfigurationAddEditController',
+    function routes($stateProvider) {
+        $stateProvider.state('openlmis.administration.dhis2.configuration', {
+            label: 'dhis2.configuration',
+            url: '/configuration?page&size',
+            controller: 'ConfigurationListController',
+            templateUrl: 'dhis2-configuration-list/dhis2-configuration-list.html',
             controllerAs: 'vm',
-            templateUrl: 'dhis2-configuration-edit/dhis2-configuration-edit.html',
-            url: ':id/edit',
             resolve: {
-                configuration: function(ConfigurationResource, Configuration, $stateParams) {
-                    return new ConfigurationResource()
-                        .get($stateParams.id)
-                        .then(function(json) {
-                            return new Configuration(json);
-                        });
+                tab: function() {
+                    return 'dhis2.configuration';
+                },
+                configurations: function(paginationService, ConfigurationResource, $stateParams) {
+                    return paginationService.registerUrl($stateParams, function(stateParams) {
+                        return new ConfigurationResource().query(stateParams);
+                    });
                 }
             }
         });
-
     }
-
 })();

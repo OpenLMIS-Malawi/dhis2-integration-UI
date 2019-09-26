@@ -2,16 +2,16 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1>{{'dhis2ConfAdd.addConfiguration' | message}}</h1>
+                <h1>{{'dhis2ConfigurationAdd.addConfiguration' | message}}</h1>
             </div>
             <div class="modal-body">
                 <ng-include src="'dhis2-configuration-edit/dhis2-configuration-form.html'"></ng-include>
             </div>
             <div class="modal-footer">
-                <button ng-click="vm.goToConfigurationList()">{{'dhis2ConfAdd.cancel' | message}}</button>
+                <button ng-click="vm.goToConfigurationList(false)">{{'dhis2ConfigurationAdd.cancel' | message}}</button>
                 <div class="button-group primary">
                     <button class="primary" type="submit"
-                        form="configurationForm">{{'dhis2ConfAdd.addConfiguration' | message}}</button>
+                        form="configurationForm">{{'dhis2ConfigurationAdd.addConfiguration' | message}}</button>
                 </div>
             </div>
         </div>

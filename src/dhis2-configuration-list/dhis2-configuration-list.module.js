@@ -17,30 +17,21 @@
 
     'use strict';
 
-    angular
-        .module('dhis2-configuration-add')
-        .config(dhis2ConfigurationAddRoutes);
-
-    dhis2ConfigurationAddRoutes.$inject = ['modalStateProvider'];
-
-    function dhis2ConfigurationAddRoutes(modalStateProvider) {
-
-        modalStateProvider.state('openlmis.administration.dhis2.configuration.add', {
-            controller: 'ConfigurationAddEditController',
-            controllerAs: 'vm',
-            templateUrl: 'dhis2-configuration-add/dhis2-configuration-add.html',
-            url: '/add',
-            resolve: {
-                configuration: function(Configuration) {
-                    return new Configuration({
-                        authenticationDetails: {
-                            type: 'BASIC'
-                        }
-                    });
-                }
-            }
-        });
-
-    }
+    /**
+     * @module dhis2-configuration-list
+     *
+     * @description
+     * Responsible for providing configuration list service.
+     */
+    angular.module('dhis2-configuration-list', [
+        'ngResource',
+        'openlmis-config',
+        'openlmis-date',
+        'referencedata',
+        'referencedata-program',
+        'referencedata-facility',
+        'referencedata-user',
+        'dhis2'
+    ]);
 
 })();

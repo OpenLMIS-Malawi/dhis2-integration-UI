@@ -23,7 +23,7 @@
 
     function routes($stateProvider, ADMINISTRATION_RIGHTS) {
         $stateProvider.state('openlmis.administration.dhis2', {
-            //abstract: true,
+            abstract: true,
             showInNavigation: true,
             label: 'dhis2.dhis2',
             url: '/dhis2',
@@ -42,7 +42,6 @@
             }
         });
 
-        addStateForTab('dhis2.configuration', '/configuration', 'dhis2-configuration/dhis2-configuration.html');
         addStateForTab('dhis2.integration', '/integration', 'dhis2-integration/dhis2-integration.html');
         addStateForTab('dhis2.executions', '/executions', 'dhis2-execution/dhis2-execution.html');
 
@@ -50,7 +49,6 @@
             $stateProvider.state('openlmis.administration.' + type, {
                 label: type,
                 url: url,
-                //controller: 'UserRolesTabController',
                 templateUrl: templateFile,
                 controllerAs: 'vm',
                 resolve: {

@@ -1,22 +1,25 @@
 <form id="configurationForm" ng-submit="vm.saveConfiguration()">
-    <label for="username">{{'dhis2ConfEdit.username' | message}}</label>
-    <input id="username"
+    <label for="name">{{'dhis2ConfigurationEdit.name' | message}}</label>
+    <input id="name"
         type="text"
-        ng-model="username"
-        ng-required="!ngDisabled && ngRequired && !isComplex"
-        ng-disabled="ngDisabled"/>
+        ng-model="vm.configuration.name"
+        required/>
 
-    <label for="password">{{'dhis2ConfEdit.password' | message}}</label>
-    <input id="password"
-        type="text"
-        ng-model="password"
-        ng-required="!ngDisabled && ngRequired && !isComplex"
-        ng-disabled="ngDisabled"/>
-
-    <label for="targetUrl">{{'dhis2ConfEdit.targetUrl' | message}}</label>
+    <label for="targetUrl">{{'dhis2ConfigurationEdit.targetUrl' | message}}</label>
     <input id="targetUrl"
         type="text"
-        ng-model="targetUrl"
-        ng-required="!ngDisabled && ngRequired && !isComplex"
-        ng-disabled="ngDisabled"/>
+        ng-model="vm.configuration.targetUrl"
+        required/>
+
+    <label for="username">{{'dhis2ConfigurationEdit.username' | message}}</label>
+    <input id="username"
+        type="text"
+        ng-model="vm.configuration.authenticationDetails.username"
+        required/>
+
+    <label for="password">{{'dhis2ConfigurationEdit.password' | message}}</label>
+    <input id="password"
+        type="text"
+        ng-model="vm.configuration.authenticationDetails.password"
+        required/>
 </form>
