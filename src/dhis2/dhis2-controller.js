@@ -141,17 +141,6 @@
         /**
          * @ngdoc property
          * @propertyOf dhis2.controller:Dhis2TabController
-         * @name periods
-         * @type {Object}
-         *
-         * @description
-         * Holds options for period of executions.
-         */
-        vm.periods = ['Period-name-1', 'Period-name-2', 'Period-name-3', 'Period-name-4'];
-
-        /**
-         * @ngdoc property
-         * @propertyOf dhis2.controller:Dhis2TabController
          * @name authType
          * @type {Object}
          *

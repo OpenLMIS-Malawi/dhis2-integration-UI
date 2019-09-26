@@ -1,0 +1,8 @@
+{
+    "dhis2ExecManual.integration":"Integration",
+    "dhis2ExecManual.period":"Period",
+    "dhis2ExecManual.description":"Description",
+    "dhis2ExecManual.startManualExecution":"Start manual execution",
+    "dhis2ExecManual.cancel":"Cancel"
+    
+}

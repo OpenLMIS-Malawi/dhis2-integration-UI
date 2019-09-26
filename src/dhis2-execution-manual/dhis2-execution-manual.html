@@ -1,0 +1,48 @@
+<div class="modal" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1>{{'dhis2ExecManual.startManualExecution' | message}}</h1>
+                </div>
+                <div class="modal-body">
+                    <h4>For manual execution Integration to DHIS-2 Integration Layer, please fill below and click "{{'dhis2ExecManual.startManualExecution' | message}}"</h4>
+                    <form ng-submit="vm.addRole()" reload-form>
+                        <div class="form-group">
+                            <label for="integration">{{'dhis2ExecManual.integration' | message}}</label>
+                            <select id="integration" 
+                                ng-model="vm.selectedIntegration"
+                                ng-options="integration as integration for integration in vm.integrations"
+                                required>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="period">{{'dhis2ExecManual.period' | message}}</label>
+                            <select id="period" 
+                                ng-model="vm.selectedPeriod"
+                                ng-options="period as period for period in vm.periods"
+                                required>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">{{'dhis2ExecManual.description' | message}}</label>
+                            <input type="text" 
+                                id="manual-execution-description" 
+                                ng-model="vm.manualExecutionDescription"
+                                characters-left 
+                                ng-maxlength="70">
+                            </input>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button ng-click="vm.goToExecutionList()">{{'dhis2ExecManual.cancel' | message}}</button>
+                    <div class="button-group primary">
+                        <button class="primary" type="submit" ng-click="vm.startManualExecution()">
+                            {{'dhis2ExecManual.startManualExecution' | message}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -45,8 +45,6 @@
         addStateForTab('dhis2.configuration', '/configuration', 'dhis2-configuration/dhis2-configuration.html');
         addStateForTab('dhis2.integration', '/integration', 'dhis2-integration/dhis2-integration.html');
         addStateForTab('dhis2.executions', '/executions', 'dhis2-execution/dhis2-execution.html');
-        addStateForTab('dhis2.manualExecution', '/manualExecution',
-            'dhis2-execution/dhis2-execution-manual.html');
 
         function addStateForTab(type, url, templateFile) {
             $stateProvider.state('openlmis.administration.' + type, {
