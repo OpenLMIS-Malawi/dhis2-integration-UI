@@ -23,9 +23,8 @@
     "dhis2.delete":"Delete",
     "dhis2.update":"Update",
     "dhis2.authType":"Authorization type",
-    "dhis2.token":"Token",
-    "dhis2.username":"Username",
-    "dhis2.password":"Password",
     "dhis2.addConfiguration":"Add Configuration",
-    "dhis2.targetUrl":"Target URL"
+    "dhis2.targetUrl":"Target URL",
+    "dhis2.retention":"Retention",
+    "dhis2.search":"Search"
 }

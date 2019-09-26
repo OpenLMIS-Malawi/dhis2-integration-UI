@@ -21,12 +21,13 @@
 
     routes.$inject = ['$stateProvider', 'ADMINISTRATION_RIGHTS'];
 
-    function routes($stateProvider, ADMINISTRATION_RIGHTS) {
+    function routes($stateProvider) {
         $stateProvider.state('openlmis.administration.dhis2', {
+            //abstract: true,
             showInNavigation: true,
             label: 'dhis2.dhis2',
             url: '/dhis2',
-            accessRights: [ADMINISTRATION_RIGHTS.DHIS2_MANAGEMENT],
+            accessRights: ['DHIS2_MANAGEMENT'],
             resolve: {
                 programs: function(programService) {
                     return programService.getAll();

@@ -36,10 +36,9 @@
         .module('openlmis-cron-selection')
         .directive('openlmisCronSelection', openlmisCronSelectionDirective);
 
-    openlmisCronSelectionDirective.$inject = ['CRON_REGEX', 'SIMPLE_CRON_REGEX', 'WEEKDAYS', 'MONTHS',
-        'DAYS', 'OCCURRENCES'];
+    openlmisCronSelectionDirective.$inject = ['CRON_REGEX', 'SIMPLE_CRON_REGEX', 'WEEKDAYS', 'DAYS', 'OCCURRENCES'];
 
-    function openlmisCronSelectionDirective(CRON_REGEX, SIMPLE_CRON_REGEX, WEEKDAYS, MONTHS, DAYS, OCCURRENCES) {
+    function openlmisCronSelectionDirective(CRON_REGEX, SIMPLE_CRON_REGEX, WEEKDAYS, DAYS, OCCURRENCES) {
         return {
             link: link,
             templateUrl: 'openlmis-cron-selection/openlmis-cron-selection.html',
@@ -53,9 +52,6 @@
 
         function link(scope, _, __, ngModelCtrl) {
             scope.weekdays = WEEKDAYS;
-            // Malawi: add months
-            scope.months = MONTHS;
-            // --- ends here ---
             scope.days = DAYS;
             scope.occurrences = OCCURRENCES;
 
@@ -73,7 +69,6 @@
             ngModelCtrl.$render = function() {
                 scope.occurrence = evaluateOccurrence(ngModelCtrl.$viewValue.weekday);
                 scope.weekday = scope.weekdays[ngModelCtrl.$viewValue.weekday];
-                scope.month = scope.months[ngModelCtrl.$viewValue.month];
                 scope.day = scope.days[ngModelCtrl.$viewValue.day];
                 scope.hour = ngModelCtrl.$viewValue.hour;
                 scope.minute = ngModelCtrl.$viewValue.minute;

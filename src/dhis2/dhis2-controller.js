@@ -124,7 +124,7 @@
          * @description
          * Holds options for days.
          */
-        vm.day = arrayDays();
+        vm.days = arrayDays();
 
         /**
          * @ngdoc property
@@ -201,9 +201,9 @@
         }
 
         function arrayDays() {
-            var array;
-            for (var xx = 1; xx > 31; xx ++) {
-                array[xx] = xx;
+            var array = [];
+            for (var xx = 0; xx < 31; xx ++) {
+                array[xx] = xx + 1;
             }
             return array;
         }

@@ -25,29 +25,35 @@
         <tbody>
             <tr>
                 <td ng-if="vm.showErrorColumn && roleAssignment.errors.length"
-                    class="role-assignment-invalid"
-                    popover-template="admin-user-roles/role-assignment-errors-popover.html">
+                    class="role-assignment-invalid">
                 </td>
                 <td ng-if="vm.showErrorColumn && !roleAssignment.errors.length"></td>
-                <td popover-template="dhis2-execution/dhis2-execution-response-popover.html"
-                popover-title="{{'dhis2.showResponse' | message}}">19/09/2019</td>
-                <td popover-template="dhis2-execution/dhis2-execution-response-popover.html"
-                popover-title="{{'dhis2.showResponse' | message}}">SEPTEMBER</td>
-                <td popover-template="dhis2-execution/dhis2-execution-response-popover.html"
-                popover-title="{{'dhis2.showResponse' | message}}">Successfull</td>
+                <td>19/09/2019</td>
+                <td>SEPTEMBER</td>
+                <td>
+                    <ul class="list-unstyled">
+                        <li>Status: 202</li>
+                        <li>Id: f0403ba8-ba87-430a-a1bf-3a21e66b45fa</li>
+                        <li>Description: Sample description</li>
+                        <li>ResponseBody: Sample response</li>
+                    </ul>
+                </td>
             </tr>
             <tr>
                 <td ng-if="vm.showErrorColumn && roleAssignment.errors.length"
-                    class="role-assignment-invalid"
-                    popover-template="admin-user-roles/role-assignment-errors-popover.html">
+                    class="role-assignment-invalid">
                 </td>
                 <td ng-if="vm.showErrorColumn && !roleAssignment.errors.length"></td>
-                <td popover-template="dhis2-execution/dhis2-execution-response-popover-testowy.html"
-                popover-title="{{'dhis2.showResponse' | message}}">19/10/2019</td>
-                <td popover-template="dhis2-execution/dhis2-execution-response-popover-testowy.html"
-                popover-title="{{'dhis2.showResponse' | message}}">OCTOBER</td>
-                <td popover-template="dhis2-execution/dhis2-execution-response-popover-testowy.html"
-                popover-title="{{'dhis2.showResponse' | message}}" style="color:red">Unsuccessfull</td>
+                <td>19/10/2019</td>
+                <td>OCTOBER</td>
+                <td>
+                    <ul class="list-unstyled">
+                        <li>Status: 500</li>
+                        <li>Id: f0403ba8-ba87-430a-a1bf-3a21e66b45fa</li>
+                        <li>Description: Sample description</li>
+                        <li>ResponseBody: Something go wrong, check your email for details. Something go wrong, check your email for details.</li>
+                    </ul>
+                </td>
             </tr>
 
             <!-- <tr ng-repeat="roleAssignment in vm.items | orderBy : '$name'">

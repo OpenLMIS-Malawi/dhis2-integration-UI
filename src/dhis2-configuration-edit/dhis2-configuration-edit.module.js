@@ -18,20 +18,13 @@
     'use strict';
 
     /**
-     * @module dhis2-integration
+     * @module dhis2-configuration-edit
      *
      * @description
-     * Responsible for providing integration service.
+     * Responsible for providing configuration service.
      */
-    angular.module('dhis2-integration', [
-        'ngResource',
-        'openlmis-config',
-        'openlmis-date',
-        'referencedata',
-        'referencedata-program',
-        'referencedata-facility',
-        'referencedata-user',
-        'dhis2'
+    angular.module('dhis2-configuration-edit', [
+        'dhis2-configuration'
     ]);
 
 })();

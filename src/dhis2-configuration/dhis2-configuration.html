@@ -1,47 +1,67 @@
-<form class="form-inline" ng-submit="vm.search()">
-    <div class="form-group">
-        <label for="authType">{{'dhis2.authType' | message}}</label>
-        <select id="authType"
-        ng-model="authType"
-        ng-options="authType as authType for authType in vm.authTypes"
-            ></select>
-    </div>
-        
-    <div class="form-group" ng-show="vm.isBearer(authType)" input-control>
-        <label for="token">{{'dhis2.token' | message}}</label>
-        <input id="token"
-            type="text"
-            ng-model="token"
-            ng-required="!ngDisabled && ngRequired && !isComplex"
-            ng-disabled="ngDisabled"/>
-    </div>
 
-    <div class="form-group" ng-show="vm.isBasic(authType)" input-control>
-        <label for="username">{{'dhis2.username' | message}}</label>
-        <input id="username"
-            type="text"
-            ng-model="username"
-            ng-required="!ngDisabled && ngRequired && !isComplex"
-            ng-disabled="ngDisabled"/>
-    </div>
-
-    <div class="form-group" ng-show="vm.isBasic(authType)" input-control>
-        <label for="password">{{'dhis2.password' | message}}</label>
-        <input id="password"
-            type="text"
-            ng-model="password"
-            ng-required="!ngDisabled && ngRequired && !isComplex"
-            ng-disabled="ngDisabled"/>
-    </div>
-
-    <div class="form-group" input-control>
-            <label for="targetUrl">{{'dhis2.targetUrl' | message}}</label>
-            <input id="targetUrl"
-                type="text"
-                ng-model="targetUrl"
-                ng-required="!ngDisabled && ngRequired && !isComplex"
-                ng-disabled="ngDisabled"/>
-        </div>
-    <button type="text" class="add">{{'dhis2.addConfiguration' | message}}</button>
-</form>
-
+<section class="openlmis-table-container">
+        <button type="text" class="add" ui-sref='.add'>{{'dhis2.addConfiguration' | message}}</button>
+        <form ng-submit="vm.search()">
+            <fieldset class="form-group">
+                <label for="authType">{{'dhis2.authType' | message}}</label>
+                <input type="text" id="authType" ng-model="vm.authType"/>
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="retention">{{'dhis2.retention' | message}}</label>
+                <input type="text" id="retention" ng-model="vm.retention"/>
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="targetUrl">{{'dhis2.targetUrl' | message}}</label>
+                <input type="text" id="targetUrl" ng-model="vm.targetUrl"/>
+            </fieldset>
+            <input type="submit" value="{{'dhis2.search' | message}}"/>
+        </form>
+        <table>
+            <!-- <caption ng-if="!vm.Execution || vm.Execution.length === 0">
+                {{'dhis2.noExecutions' | message}}
+            </caption> -->
+            <thead>
+                <tr>
+                    <th ng-if="vm.showErrorColumn"></th>
+                    <th>{{'dhis2.authType' | message}}</th>
+                    <th>{{'dhis2.retention' | message}}</th>
+                    <th>{{'dhis2.targetUrl' | message}}</th>
+                    <th>{{'dhis2.actions' | message}}</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td ng-if="vm.showErrorColumn && roleAssignment.errors.length"
+                        class="role-assignment-invalid"
+                        dhis2                       popover-template="admin-user-roles/role-assignment-errors-popover.html">
+                    </td>
+                    <td ng-if="vm.showErrorColumn && !roleAssignment.errors.length"></td>
+                    <td>Basic</td>
+                    <td>10 days</td>
+                    <td>http://lmis-dev.com</td>
+                    <td>
+                        <button class="primary" ui-sref='.edit'>{{'dhis2.update' | message}}</button>
+                        <button class="danger" ng-click="vm.removeRole(roleAssignment)">{{'dhis2.delete' | message}}</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td ng-if="vm.showErrorColumn && roleAssignment.errors.length"
+                        class="role-assignment-invalid"
+                        popover-template="admin-user-roles/role-assignment-errors-popover.html">
+                    </td>
+                    <td ng-if="vm.showErrorColumn && !roleAssignment.errors.length"></td>
+                    <td>Basic</td>
+                    <td>19 days</td>
+                    <td>http://lmis-uat.com</td>
+                    <td>
+                        <button class="primary" ui-sref='.edit'>{{'dhis2.update' | message}}</button>
+                        <button class="danger" ng-click="vm.removeRole(roleAssignment)">{{'dhis2.delete' | message}}</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <openlmis-pagination
+            list="vm.Execution"
+            paged-list="vm.items"/>
+    </section>

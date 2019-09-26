@@ -7,21 +7,7 @@
             ng-required="!ngDisabled && ngRequired && !isComplex"
             ng-disabled="ngDisabled"></select>
     </div>
-    <!-- Malawi: months -->
-    <div ng-show="isMonthly(occurrence, occurrences)">{{'openlmisCronSelection.on' | message}}</div>
-
-    <div openlmis-invalid
-        ng-show="isMonthly(occurrence, occurrences)">
-
-        <select
-            id="month"
-            ng-model="month"
-            ng-options="option as (option | message) for option in months"
-            ng-required="!ngDisabled && ngRequired && !isComplex && isMonthly(occurrence, occurrences)"
-            ng-disabled="ngDisabled"
-            ></select>
-    </div>
-
+    <!-- Malawi: monthly schedule -->
     <div ng-show="isMonthly(occurrence, occurrences)">{{'openlmisCronSelection.on' | message}}</div>
 
     <div openlmis-invalid

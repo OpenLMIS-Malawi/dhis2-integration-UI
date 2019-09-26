@@ -14,31 +14,29 @@
  */
 
 (function() {
-    // Malawi: months
+
     'use strict';
 
-    /**
-     * @ngdoc object
-     * @name openlmis-cron-selection.MONTHS
-     *
-     * @description
-     * Stores keys for weekday messages.
-     */
     angular
-        .module('openlmis-cron-selection')
-        .constant('MONTHS', [
-            'openlmisCronSelection.january',
-            'openlmisCronSelection.february',
-            'openlmisCronSelection.march',
-            'openlmisCronSelection.april',
-            'openlmisCronSelection.may',
-            'openlmisCronSelection.june',
-            'openlmisCronSelection.august',
-            'openlmisCronSelection.september',
-            'openlmisCronSelection.october',
-            'openlmisCronSelection.november',
-            'openlmisCronSelection.december'
+        .module('dhis2-integration-edit')
+        .config(dhis2IntegrationEditRoutes);
 
-        ]);
-    // --- ends here ---
+    dhis2IntegrationEditRoutes.$inject = ['modalStateProvider'];
+
+    function dhis2IntegrationEditRoutes(modalStateProvider) {
+
+        modalStateProvider.state('openlmis.administration.dhis2.integration.edit', {
+            controller: 'IntegrationAddEditGeneralController',
+            controllerAs: 'vm',
+            templateUrl: 'dhis2-integration-edit/dhis2-integration-edit.html',
+            url: '/edit',
+            resolve: {
+                programs: function(programService) {
+                    return programService.getAll();
+                }
+            }
+        });
+
+    }
+
 })();

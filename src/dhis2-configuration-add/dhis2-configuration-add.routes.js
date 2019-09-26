@@ -17,21 +17,21 @@
 
     'use strict';
 
-    /**
-     * @module dhis2-integration
-     *
-     * @description
-     * Responsible for providing integration service.
-     */
-    angular.module('dhis2-integration', [
-        'ngResource',
-        'openlmis-config',
-        'openlmis-date',
-        'referencedata',
-        'referencedata-program',
-        'referencedata-facility',
-        'referencedata-user',
-        'dhis2'
-    ]);
+    angular
+        .module('dhis2-configuration-add')
+        .config(dhis2ConfigurationAddRoutes);
+
+    dhis2ConfigurationAddRoutes.$inject = ['modalStateProvider'];
+
+    function dhis2ConfigurationAddRoutes(modalStateProvider) {
+
+        modalStateProvider.state('openlmis.administration.dhis2.configuration.add', {
+            controller: 'ConfigurationAddEditGeneralController',
+            controllerAs: 'vm',
+            templateUrl: 'dhis2-configuration-add/dhis2-configuration-add.html',
+            url: '/add'
+        });
+
+    }
 
 })();

@@ -1,0 +1,28 @@
+<form id="configurationForm" ng-submit="vm.saveConfiguration()">
+    <label for="username">{{'dhis2ConfEdit.username' | message}}</label>
+    <input id="username"
+        type="text"
+        ng-model="username"
+        ng-required="!ngDisabled && ngRequired && !isComplex"
+        ng-disabled="ngDisabled"/>
+
+    <label for="password">{{'dhis2ConfEdit.password' | message}}</label>
+    <input id="password"
+        type="text"
+        ng-model="password"
+        ng-required="!ngDisabled && ngRequired && !isComplex"
+        ng-disabled="ngDisabled"/>
+
+    <label for="retention">{{'dhis2ConfEdit.retention' | message}}</label>
+    <select id="day"
+    ng-model="day"
+    ng-options="day as day for day in vm.days"
+        ></select>
+
+    <label for="targetUrl">{{'dhis2ConfEdit.targetUrl' | message}}</label>
+    <input id="targetUrl"
+        type="text"
+        ng-model="targetUrl"
+        ng-required="!ngDisabled && ngRequired && !isComplex"
+        ng-disabled="ngDisabled"/>
+</form>
