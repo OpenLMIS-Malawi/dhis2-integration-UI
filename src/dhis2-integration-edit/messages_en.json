@@ -3,5 +3,6 @@
     "dhis2IntegEdit.cancel":"Cancel",
     "dhis2IntegEdit.program": "Program",
     "dhis2IntegEdit.period": "Period",
-    "dhis2IntegEdit.description": "Description"
+    "dhis2IntegEdit.description": "Description",
+    "dhis2IntegEdit.configuration": "Configuration"
 }

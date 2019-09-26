@@ -13,12 +13,6 @@
         ng-required="!ngDisabled && ngRequired && !isComplex"
         ng-disabled="ngDisabled"/>
 
-    <label for="retention">{{'dhis2ConfEdit.retention' | message}}</label>
-    <select id="day"
-    ng-model="day"
-    ng-options="day as day for day in vm.days"
-        ></select>
-
     <label for="targetUrl">{{'dhis2ConfEdit.targetUrl' | message}}</label>
     <input id="targetUrl"
         type="text"

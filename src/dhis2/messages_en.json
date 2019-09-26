@@ -21,10 +21,9 @@
     "dhis2.addSchedule":"Add schedule",
     "dhis2.description":"Description",
     "dhis2.delete":"Delete",
-    "dhis2.update":"Update",
+    "dhis2.edit":"Edit",
     "dhis2.authType":"Authorization type",
     "dhis2.addConfiguration":"Add Configuration",
     "dhis2.targetUrl":"Target URL",
-    "dhis2.retention":"Retention",
     "dhis2.search":"Search"
 }

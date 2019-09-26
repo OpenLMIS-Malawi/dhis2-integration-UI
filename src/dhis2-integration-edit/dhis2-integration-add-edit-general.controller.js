@@ -74,6 +74,18 @@
         vm.programs = undefined;
 
         /**
+         * @ngdoc property
+         * @propertyOf dhis2-integration-add-edit-general:IntegrationAddEditGeneralController
+         * @name configurations
+         * @type {Array}
+         *
+
+         * @description
+         * List of all configurations.
+         */
+        vm.configurations = ['Confuguration-1', 'Confuguration-2', 'Confuguration-3', 'Confuguration-4'];
+
+        /**
          * @ngdoc method
          * @methodOf dhis2-integration-add-edit-general:IntegrationAddEditGeneralController
          * @name goToIntegrationList

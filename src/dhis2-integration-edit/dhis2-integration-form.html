@@ -15,14 +15,22 @@
     </div>
 
     <div class="form-group">
-            <label for="period">{{'dhis2IntegEdit.description' | message}}</label>
-            <input 
-                type="text" 
-                id="scheduling-description" 
-                ng-model="vm.schedulingDescription" 
-                characters-left 
-                ng-maxlength="70">
-            </input>
-        </div>
+        <label for="configuration">{{'dhis2IntegEdit.configuration' | message}}</label>
+        <select id="configuration" ng-model="vm.selectedIntegration"
+            ng-options="configuration as configuration for configuration in vm.configurations"
+            required>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="period">{{'dhis2IntegEdit.description' | message}}</label>
+        <input 
+            type="text" 
+            id="scheduling-description" 
+            ng-model="vm.schedulingDescription" 
+            characters-left 
+            ng-maxlength="70">
+        </input>
+    </div>
     
 </form>

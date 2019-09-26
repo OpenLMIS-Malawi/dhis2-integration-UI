@@ -4,7 +4,6 @@
     "dhis2ConfEdit.username":"Username",
     "dhis2ConfEdit.password":"Password",
     "dhis2ConfEdit.targetUrl":"Target URL",
-    "dhis2ConfEdit.retention":"Retention",
     "dhis2ConfEdit.editConfiguration":"Edit configuration",
     "dhis2ConfEdit.cancel":"Cancel"
 }
