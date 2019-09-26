@@ -34,7 +34,7 @@
 
         /**
          * @ngdoc method
-         * @methodOf dhis2-execution.ManualExecution
+         * @methodOf dhis2-execution-manual.ManualExecution
          * @name ManualExecution
          *
          * @description

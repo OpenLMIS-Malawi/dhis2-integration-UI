@@ -25,7 +25,7 @@
      * Controller for managing manual execution view screen.
      */
     angular
-        .module('dhis2-integration-edit')
+        .module('dhis2-execution-manual')
         .controller('ExecutionManualController', controller);
 
     controller.$inject = ['$state'];
