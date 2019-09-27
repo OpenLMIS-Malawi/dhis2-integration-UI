@@ -25,6 +25,7 @@
 
     function routes($stateProvider) {
         $stateProvider.state('openlmis.administration.dhis2.configurations', {
+            label: 'dhis2.configurations',
             url: '/configurations?page&size',
             controller: 'ConfigurationListController',
             templateUrl: 'dhis2-configuration-list/dhis2-configuration-list.html',

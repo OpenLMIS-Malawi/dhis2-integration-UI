@@ -22,14 +22,16 @@
     routes.$inject = ['$stateProvider', 'ADMINISTRATION_RIGHTS'];
 
     function routes($stateProvider, ADMINISTRATION_RIGHTS) {
+
         $stateProvider.state('openlmis.administration.dhis2', {
-            showInNavigation: true,
             label: 'dhis2.serviceName',
+            showInNavigation: true,
             url: '/dhis2',
             accessRights: [ADMINISTRATION_RIGHTS.DHIS2_MANAGEMENT],
             controller: 'Dhis2Controller',
             templateUrl: 'dhis2/dhis2.html',
             controllerAs: 'vm'
         });
+
     }
 })();

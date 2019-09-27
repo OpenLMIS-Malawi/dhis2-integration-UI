@@ -28,9 +28,9 @@
         .module('dhis2')
         .controller('Dhis2Controller', controller);
 
-    controller.$inject = [];
+    controller.$inject = ['$state'];
 
-    function controller() {
+    function controller($state) {
 
         var vm = this;
 
@@ -56,6 +56,8 @@
                 state: 'openlmis.administration.dhis2.configurations',
                 name: 'dhis2.configurations'
             }];
+
+            $state.go('openlmis.administration.dhis2.executions');
         }
 
     }
