@@ -28,26 +28,15 @@
         .module('dhis2-execution-manual')
         .controller('ExecutionManualController', controller);
 
-    controller.$inject = ['$state'];
+    controller.$inject = ['$state', 'ExecutionResource', 'integrations', 'periods'];
 
-    function controller($state) {
+    function controller($state, ExecutionResource, integrations, periods) {
 
         var vm = this;
 
         vm.$onInit = onInit;
         vm.goToExecutionList  = goToExecutionList;
         vm.startManualExecution = startManualExecution;
-
-        /**
-         * @ngdoc method
-         * @propertyOf dhis2-execution-manual:ExecutionManualController
-         * @name $onInit
-         *
-         * @description
-         * Method that is executed on initiating ExecutionManualController.
-         */
-        function onInit() {
-        }
 
         /**
          * @ngdoc property
@@ -59,7 +48,7 @@
          * @description
          * List of all integrations.
          */
-        vm.integrations = ['Integration-1', 'Integration-2', 'Integration-3', 'Integration-4'];
+        vm.integrations = undefined;
 
         /**
          * @ngdoc property
@@ -70,7 +59,20 @@
          * @description
          * Holds options for period of executions.
          */
-        vm.periods = ['Period-name-1', 'Period-name-2', 'Period-name-3', 'Period-name-4'];
+        vm.periods = undefined;
+
+        /**
+         * @ngdoc method
+         * @propertyOf dhis2-execution-manual:ExecutionManualController
+         * @name $onInit
+         *
+         * @description
+         * Method that is executed on initiating ExecutionManualController.
+         */
+        function onInit() {
+            vm.integrations = integrations;
+            vm.periods = periods;
+        }
 
         /**
          * @ngdoc method
@@ -80,8 +82,10 @@
          * @description
          * Redirects to execution list screen.
          */
-        function goToExecutionList() {
-            $state.go('openlmis.administration.dhis2.executions', {}, {});
+        function goToExecutionList(reload) {
+            $state.go('openlmis.administration.dhis2.executions', {}, {
+                reload: reload
+            });
         }
 
         /**
@@ -93,9 +97,15 @@
          * Start manual execution and return to the execution list on success.
          */
         function startManualExecution() {
-            $state.go('openlmis.administration.dhis2.executions', {}, {
-                reload: true
-            });
+            return new ExecutionResource()
+                .startManualExecution({
+                    integrationId: vm.selectedIntegration.id,
+                    periodId: vm.selectedPeriod.id
+                })
+                .then(function() {
+                    goToExecutionList(true);
+                });
+
         }
     }
 })();

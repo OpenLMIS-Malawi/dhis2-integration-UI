@@ -29,7 +29,25 @@
             controller: 'ExecutionManualController',
             controllerAs: 'vm',
             templateUrl: 'dhis2-execution-manual/dhis2-execution-manual.html',
-            url: '/edit'
+            url: '/manual',
+            resolve: {
+                integrations: function(IntegrationResource) {
+                    return new IntegrationResource()
+                        .query()
+                        .then(function(page) {
+                            return page.content;
+                        });
+                },
+                periods: function(ProcessingPeriodResource) {
+                    return new ProcessingPeriodResource()
+                        .query({
+                            sort: 'startDate,DESC'
+                        })
+                        .then(function(page) {
+                            return page.content;
+                        });
+                }
+            }
         });
     }
 })();

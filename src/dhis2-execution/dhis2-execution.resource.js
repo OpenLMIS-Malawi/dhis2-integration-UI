@@ -46,8 +46,8 @@
             this.originalCreate = OpenlmisResource.prototype.create;
         }
 
-        function startManualExecution(ManualExecution) {
-            return this.originalCreate(ManualExecution);
+        function startManualExecution(manualExecution) {
+            return this.originalCreate(manualExecution);
         }
     }
 })();

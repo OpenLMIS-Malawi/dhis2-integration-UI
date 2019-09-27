@@ -18,20 +18,36 @@
     'use strict';
 
     /**
-     * @module
+     * @ngdoc controller
+     * @name dhis2-execution-list:ExecutionListController
      *
      * @description
-     * Main dhis2 module that provides basic logic.
+     * Controller for execution list view screen.
      */
-    angular.module('dhis2', [
-        'ui.router',
-        'openlmis-urls',
-        'openlmis-rights',
-        'openlmis-main-state',
-        'openlmis-sort',
-        'openlmis-modal-state',
-        'openlmis-modal',
-        'referencedata-program',
-        'referencedata-period'
-    ]);
+    angular
+        .module('dhis2-execution-list')
+        .controller('ExecutionListController', controller);
+
+    controller.$inject = [ 'executions', 'periodsMap' ];
+
+    function controller(executions, periodsMap) {
+
+        var vm = this;
+
+        vm.$onInit = onInit;
+
+        /**
+         * @ngdoc method
+         * @propertyOf dhis2-execution-list:ExecutionListController
+         * @name $onInit
+         *
+         * @description
+         * Method that is executed on initiating ExecutionListController.
+         */
+        function onInit() {
+            vm.executions = executions;
+            vm.periods = periodsMap;
+        }
+
+    }
 })();

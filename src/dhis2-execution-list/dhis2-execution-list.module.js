@@ -18,20 +18,22 @@
     'use strict';
 
     /**
-     * @module
+     * @module dhis2-execution-list
      *
      * @description
-     * Main dhis2 module that provides basic logic.
+     * Responsible for providing execution service.
      */
-    angular.module('dhis2', [
-        'ui.router',
-        'openlmis-urls',
-        'openlmis-rights',
-        'openlmis-main-state',
-        'openlmis-sort',
-        'openlmis-modal-state',
-        'openlmis-modal',
+    angular.module('dhis2-execution-list', [
+        'ngResource',
+        'openlmis-config',
+        'openlmis-date',
+        'referencedata',
         'referencedata-program',
-        'referencedata-period'
+        'referencedata-facility',
+        'referencedata-user',
+        'dhis2',
+        'dhis2-execution',
+        'dhis2-execution-manual'
     ]);
+
 })();

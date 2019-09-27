@@ -1,0 +1,37 @@
+<section class="openlmis-table-container">
+<button type="text" class="add" ui-sref='.manual'>{{'dhis2ExecutionList.manualExecution' | message}}</button>
+    <table>
+        <caption ng-if="!vm.executions || vm.executions.length === 0">
+            {{'dhis2ExecutionList.noExecutions' | message}}
+        </caption>
+        <thead>
+            <tr>
+                <th>{{'dhis2ExecutionList.startDate' | message}}</th>
+                <th>{{'dhis2ExecutionList.endDate' | message}}</th>
+                <th>{{'dhis2ExecutionList.relevantPeriod' | message}}</th>
+                <th>{{'dhis2ExecutionList.manualExecution' | message}}</th>
+                <th>{{'dhis2ExecutionList.result' | message}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="execution in vm.executions">
+                <td>{{execution.startDate}}</td>
+                <td>{{execution.endDate}}</td>
+                <td>{{vm.periods[execution.processingPeriodId].name}}</td>
+                <td><i ng-class="{'icon-ok':execution.manualExecution}"/></td>
+                <td>
+                    <ul class="list-unstyled" ng-if="execution.response">
+                        <li>{{'dhis2ExecutionList.status' | message}}: {{execution.response.statusCode}}</li>
+                        <li>
+                            {{'dhis2ExecutionList.responseBody' | message}}:
+                            <pre>{{execution.response.body}}</pre>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <openlmis-pagination
+        list="vm.executions"
+        paged-list="vm.items"/>
+</section>
