@@ -25,7 +25,7 @@
 
     function dhis2ConfigurationEditRoutes(modalStateProvider) {
 
-        modalStateProvider.state('openlmis.administration.dhis2.configuration.edit', {
+        modalStateProvider.state('openlmis.administration.dhis2.configurations.edit', {
             controller: 'ConfigurationAddEditController',
             controllerAs: 'vm',
             templateUrl: 'dhis2-configuration-edit/dhis2-configuration-edit.html',

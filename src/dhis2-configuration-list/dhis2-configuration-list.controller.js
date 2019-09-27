@@ -73,7 +73,7 @@
         }
 
         function refreshState(stateParams) {
-            $state.go('openlmis.administration.dhis2.configuration', stateParams, {
+            $state.go('openlmis.administration.dhis2.configurations', stateParams, {
                 reload: true
             });
         }

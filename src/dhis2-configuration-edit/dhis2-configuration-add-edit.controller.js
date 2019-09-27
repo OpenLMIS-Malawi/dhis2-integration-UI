@@ -59,7 +59,7 @@
          * Redirects to configuration list screen.
          */
         function goToConfigurationList(reload) {
-            $state.go('openlmis.administration.dhis2.configuration', {}, {
+            $state.go('openlmis.administration.dhis2.configurations', {}, {
                 reload: reload
             });
         }
