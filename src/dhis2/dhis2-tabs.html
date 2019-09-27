@@ -1,19 +1,8 @@
 <nav>
     <ul>
-        <li ui-sref-active="active" role="presentation">
-            <a ui-sref=".executions" ui-sref-active="active">
-                {{'dhis2.executions' | message}}
-            </a>
-        </li>
-        <li ui-sref-active="active" role="presentation">
-            <a ui-sref=".configuration">
-                {{'dhis2.configuration' | message}}
-            </a>
-        </li>
-        <li ui-sref-active="active" role="presentation">
-            <a ui-sref=".integration">
-                {{'dhis2.integration' | message}}
-            </a>
+        <li ng-repeat="tab in vm.tabs" ui-sref-active="active" role="presentation">
+            <a ui-sref="{{tab.state}}">{{tab.name | message}}</a>
         </li>
     </ul>
 </nav>
+<div ui-view=""></div>

@@ -24,16 +24,12 @@
     routes.$inject = ['$stateProvider'];
 
     function routes($stateProvider) {
-        $stateProvider.state('openlmis.administration.dhis2.configuration', {
-            label: 'dhis2.configuration',
-            url: '/configuration?page&size',
+        $stateProvider.state('openlmis.administration.dhis2.configurations', {
+            url: '/configurations?page&size',
             controller: 'ConfigurationListController',
             templateUrl: 'dhis2-configuration-list/dhis2-configuration-list.html',
             controllerAs: 'vm',
             resolve: {
-                tab: function() {
-                    return 'dhis2.configuration';
-                },
                 configurations: function(paginationService, ConfigurationResource, $stateParams) {
                     return paginationService.registerUrl($stateParams, function(stateParams) {
                         return new ConfigurationResource().query(stateParams);

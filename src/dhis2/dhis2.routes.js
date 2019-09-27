@@ -21,18 +21,12 @@
 
     routes.$inject = ['$stateProvider', 'ADMINISTRATION_RIGHTS'];
 
-    function routes($stateProvider, ADMINISTRATION_RIGHTS) {
+    function routes($stateProvider) {
         $stateProvider.state('openlmis.administration.dhis2', {
-            abstract: true,
             showInNavigation: true,
-            label: 'dhis2.dhis2',
+            label: 'dhis2.serviceName',
             url: '/dhis2',
             accessRights: [ADMINISTRATION_RIGHTS.DHIS2_MANAGEMENT],
-            resolve: {
-                programs: function(programService) {
-                    return programService.getAll();
-                }
-            },
             views: {
                 '@openlmis': {
                     templateUrl: 'dhis2/dhis2.html',
@@ -43,19 +37,13 @@
         });
 
         addStateForTab('dhis2.integration', '/integration', 'dhis2-integration/dhis2-integration.html');
-        addStateForTab('dhis2.executions', '/executions', 'dhis2-execution/dhis2-execution.html');
 
         function addStateForTab(type, url, templateFile) {
             $stateProvider.state('openlmis.administration.' + type, {
                 label: type,
                 url: url,
                 templateUrl: templateFile,
-                controllerAs: 'vm',
-                resolve: {
-                    tab: function() {
-                        return type;
-                    }
-                }
+                controllerAs: 'vm'
             });
         }
     }

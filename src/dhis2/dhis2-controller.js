@@ -28,14 +28,13 @@
         .module('dhis2')
         .controller('Dhis2TabController', controller);
 
-    controller.$inject = ['$state', '$stateParams', 'Execution', 'programs'];
+    controller.$inject = [];
 
-    function controller($state, $stateParams, Execution, programs) {
+    function controller() {
 
         var vm = this;
 
         vm.$onInit = onInit;
-        vm.search = search;
 
         /**
          * @ngdoc method
@@ -47,154 +46,17 @@
          */
 
         function onInit() {
-            vm.Execution = Execution;
-            vm.programs = programs;
-            vm.isBearer = isBearer;
-            vm.isBasic = isBasic;
-            changeState();
+            vm.tabs = [{
+                state: 'openlmis.administration.dhis2.executions',
+                name: 'dhis2.executions'
+            }, {
+                state: 'openlmis.administration.dhis2.integrations',
+                name: 'dhis2.integrations'
+            }, {
+                state: 'openlmis.administration.dhis2.configurations',
+                name: 'dhis2.configurations'
+            }];
         }
 
-        /**
-         * @ngdoc property
-         * @propertyOf dhis2.controller:Dhis2TabController
-         * @name programs
-         * @type {Array}
-         *
-
-         * @description
-         * List of all programs.
-         */
-        vm.programs = undefined;
-
-        /**
-         * @ngdoc property
-         * @propertyOf dhis2.controller:Dhis2TabController
-         * @name Execution
-         * @type {Object}
-         *
-         * @description
-         * Contains executions
-         */
-        vm.Execution = undefined;
-
-        /**
-         * @ngdoc property
-         * @propertyOf dhis2.controller:Dhis2TabController
-         * @name options
-         * @type {Object}
-         *
-         * @description
-         * Holds options for sorting user list.
-         */
-        vm.options = {
-            'dhis2.successful': ['Successfull'],
-            'dhis2.unsuccessful': ['Unsuccessful'],
-            'dhis2.date': ['Date'],
-            'dhis2.program': ['Program']
-        };
-
-        /**
-         * @ngdoc property
-         * @propertyOf dhis2.controller:Dhis2TabController
-         * @name status
-         * @type {Object}
-         *
-         * @description
-         * Holds options for status of executions.
-         */
-        vm.status = ['Successfull', 'Unsuccessful'];
-
-        /**
-         * @ngdoc property
-         * @propertyOf dhis2.controller:Dhis2TabController
-         * @name periods
-         * @type {Object}
-         *
-         * @description
-         * Holds options for period of executions.
-         */
-        vm.periods = ['Period-name-1', 'Period-name-2', 'Period-name-3', 'Period-name-4'];
-
-        /**
-         * @ngdoc property
-         * @propertyOf dhis2.controller:Dhis2TabController
-         * @name day
-         * @type {Object}
-         *
-         * @description
-         * Holds options for days.
-         */
-        vm.days = arrayDays();
-
-        /**
-         * @ngdoc property
-         * @propertyOf dhis2.controller:Dhis2TabController
-         * @name periods
-         * @type {Object}
-         *
-         * @description
-         * Holds options for months.
-         */
-        vm.months = ['January', 'February', 'March', 'April', 'May',
-            'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-        /**
-         * @ngdoc property
-         * @propertyOf dhis2.controller:Dhis2TabController
-         * @name authType
-         * @type {Object}
-         *
-         * @description
-         * Holds options for authType.
-         */
-        vm.authTypes = ['Basic', 'Bearer'];
-
-        /**
-         * @ngdoc method
-         * @methodOf dhis2.controller:Dhis2TabController
-         * @name changeState
-         *
-         * @description
-         * Change tab to default.
-         *
-         */
-
-        function changeState() {
-            $state.go('openlmis.administration.dhis2.executions');
-        }
-
-        /**
-         * @ngdoc method
-         * @methodOf  dhis2.controller:Dhis2TabController
-         * @name search
-         *
-         * @description
-         * Reloads page with new search parameters.
-         */
-        function search() {
-            var stateParams = angular.copy($stateParams);
-
-            stateParams.lastName = vm.lastName;
-
-            $state.go('openlmis.administration.dhis2.executions', stateParams, {
-                reload: true
-            });
-        }
-
-        function isBearer(authType) {
-            return authType === vm.authTypes[1];
-        }
-
-        function isBasic(authType) {
-            return authType === vm.authTypes[0];
-        }
-
-        function arrayDays() {
-            var array = [];
-            for (var xx = 0; xx < 31; xx ++) {
-                array[xx] = xx + 1;
-            }
-            return array;
-        }
     }
 })();
