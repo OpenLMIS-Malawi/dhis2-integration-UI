@@ -1,36 +1,20 @@
 <form id="integrationForm" ng-submit="vm.saveIntegration()" reload-form>
-    <div class="form-group">
-        <label for="program">{{'dhis2IntegEdit.program' | message}}</label>
-        <select id="program" ng-model="vm.selectedProgram"
-            ng-options="program as program.name for program in vm.programs"
-            required>
-        </select>
-    </div>
-    
-    <div>
-        <label for="period">{{'dhis2IntegEdit.period' | message}}</label>
-        <openlmis-cron-selection
-            ng-required="vm.userSubscriptionsMap[digestConfiguration.id].useDigest"
-            ng-model="vm.userSubscriptionsMap[digestConfiguration.id].cronExpression" />
-    </div>
+    <label for="name">{{'dhis2IntegrationEdit.name' | message}}</label>
+    <input id="name" type="text" ng-model="vm.integration.name" required/>
 
-    <div class="form-group">
-        <label for="configuration">{{'dhis2IntegEdit.configuration' | message}}</label>
-        <select id="configuration" ng-model="vm.selectedIntegration"
-            ng-options="configuration as configuration for configuration in vm.configurations"
-            required>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="period">{{'dhis2IntegEdit.description' | message}}</label>
-        <input 
-            type="text" 
-            id="scheduling-description" 
-            ng-model="vm.schedulingDescription" 
-            characters-left 
-            ng-maxlength="70">
-        </input>
-    </div>
+    <label for="program">{{'dhis2IntegrationEdit.program' | message}}</label>
+    <select id="program" ng-model="vm.integration.programId"
+        ng-options="program.id as program.name for program in vm.programs"
+        required>
+    </select>
     
+    <label for="period">{{'dhis2IntegrationEdit.period' | message}}</label>
+    <openlmis-cron-selection ng-model="vm.integration.cronExpression" ng-required="true"/>
+
+    <label for="configuration">{{'dhis2IntegrationEdit.configuration' | message}}</label>
+    <select id="configuration" ng-model="vm.integration.configuration"
+        ng-options="configuration as configuration.name for configuration in vm.configurations"
+        required>
+    </select>
+
 </form>

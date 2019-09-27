@@ -1,8 +1,8 @@
 {
-    "dhis2IntegEdit.editIntegration":"Edit integration",
-    "dhis2IntegEdit.cancel":"Cancel",
-    "dhis2IntegEdit.program": "Program",
-    "dhis2IntegEdit.period": "Period",
-    "dhis2IntegEdit.description": "Description",
-    "dhis2IntegEdit.configuration": "Configuration"
+    "dhis2IntegrationEdit.editIntegration":"Edit integration",
+    "dhis2IntegrationEdit.cancel":"Cancel",
+    "dhis2IntegrationEdit.program": "Program",
+    "dhis2IntegrationEdit.period": "Period",
+    "dhis2IntegrationEdit.configuration": "Configuration",
+    "dhis2IntegrationEdit.name": "Name"
 }

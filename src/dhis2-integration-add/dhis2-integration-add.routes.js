@@ -25,14 +25,24 @@
 
     function dhis2IntegrationAddRoutes(modalStateProvider) {
 
-        modalStateProvider.state('openlmis.administration.dhis2.integration.add', {
-            controller: 'IntegrationAddEditGeneralController',
+        modalStateProvider.state('openlmis.administration.dhis2.integrations.add', {
+            controller: 'IntegrationAddEditController',
             controllerAs: 'vm',
             templateUrl: 'dhis2-integration-add/dhis2-integration-add.html',
             url: '/add',
             resolve: {
-                programs: function(programService) {
-                    return programService.getAll();
+                integration: function(Integration) {
+                    return new Integration({});
+                },
+                programs: function(ProgramResource) {
+                    return new ProgramResource().query();
+                },
+                configurations: function(ConfigurationResource) {
+                    return new ConfigurationResource()
+                        .query()
+                        .then(function(page) {
+                            return page.content;
+                        });
                 }
             }
         });

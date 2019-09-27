@@ -17,23 +17,21 @@
 
     'use strict';
 
-    angular.module('dhis2').config(routes);
+    /**
+     * @module dhis2-integration-list
+     *
+     * @description
+     * Responsible for providing integration service.
+     */
+    angular.module('dhis2-integration-list', [
+        'ngResource',
+        'openlmis-config',
+        'openlmis-date',
+        'referencedata',
+        'referencedata-program',
+        'referencedata-facility',
+        'referencedata-user',
+        'dhis2'
+    ]);
 
-    routes.$inject = ['$stateProvider', 'ADMINISTRATION_RIGHTS'];
-
-    function routes($stateProvider) {
-        $stateProvider.state('openlmis.administration.dhis2', {
-            showInNavigation: true,
-            label: 'dhis2.serviceName',
-            url: '/dhis2',
-            accessRights: [ADMINISTRATION_RIGHTS.DHIS2_MANAGEMENT],
-            views: {
-                '@openlmis': {
-                    templateUrl: 'dhis2/dhis2.html',
-                    controller: 'Dhis2TabController',
-                    controllerAs: 'vm'
-                }
-            }
-        });
-    }
 })();

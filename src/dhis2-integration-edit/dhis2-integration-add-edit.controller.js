@@ -19,18 +19,18 @@
 
     /**
      * @ngdoc controller
-     * @name dhis2-integration-add-edit-general:IntegrationAddEditGeneralController
+     * @name dhis2-integration-add-edit-general:IntegrationAddEditController
      *
      * @description
      * Controller for managing integration view screen.
      */
     angular
         .module('dhis2-integration-edit')
-        .controller('IntegrationAddEditGeneralController', controller);
+        .controller('IntegrationAddEditController', controller);
 
-    controller.$inject = ['$state', 'programs'];
+    controller.$inject = ['$state', 'IntegrationResource', 'integration', 'programs', 'configurations'];
 
-    function controller($state, programs) {
+    function controller($state, IntegrationResource, integration, programs, configurations) {
 
         var vm = this;
 
@@ -39,31 +39,19 @@
         vm.saveIntegration = saveIntegration;
 
         /**
-         * @ngdoc method
-         * @propertyOf dhis2-integration-add-edit-general:IntegrationAddEditGeneralController
-         * @name $onInit
-         *
-         * @description
-         * Method that is executed on initiating IntegrationAddEditGeneralController.
-         */
-        function onInit() {
-            vm.programs = programs;
-        }
-
-        /**
          * @ngdoc property
-         * @propertyOf dhis2-integration-add-edit-general:IntegrationAddEditGeneralController
+         * @propertyOf dhis2-integration-add-edit-general:IntegrationAddEditController
          * @name day
          * @type {Object}
          *
          * @description
          * Holds options for days.
          */
-        vm.days = arrayDays();
+        vm.days = undefined;
 
         /**
          * @ngdoc property
-         * @propertyOf dhis2-integration-add-edit-general:IntegrationAddEditGeneralController
+         * @propertyOf dhis2-integration-add-edit-general:IntegrationAddEditController
          * @name programs
          * @type {Array}
          *
@@ -75,7 +63,7 @@
 
         /**
          * @ngdoc property
-         * @propertyOf dhis2-integration-add-edit-general:IntegrationAddEditGeneralController
+         * @propertyOf dhis2-integration-add-edit-general:IntegrationAddEditController
          * @name configurations
          * @type {Array}
          *
@@ -83,30 +71,58 @@
          * @description
          * List of all configurations.
          */
-        vm.configurations = ['Confuguration-1', 'Confuguration-2', 'Confuguration-3', 'Confuguration-4'];
+        vm.configurations = undefined;
 
         /**
          * @ngdoc method
-         * @methodOf dhis2-integration-add-edit-general:IntegrationAddEditGeneralController
+         * @propertyOf dhis2-integration-add-edit-general:IntegrationAddEditController
+         * @name $onInit
+         *
+         * @description
+         * Method that is executed on initiating IntegrationAddEditController.
+         */
+        function onInit() {
+            vm.days = arrayDays();
+
+            vm.integration = integration;
+            vm.programs = programs;
+            vm.configurations = configurations;
+        }
+
+        /**
+         * @ngdoc method
+         * @methodOf dhis2-integration-add-edit-general:IntegrationAddEditController
          * @name goToIntegrationList
          *
          * @description
          * Redirects to integration list screen.
          */
-        function goToIntegrationList() {
-            $state.go('openlmis.administration.dhis2.integration', {}, {});
+        function goToIntegrationList(reload) {
+            $state.go('openlmis.administration.dhis2.integrations', {}, {
+                reload: reload
+            });
         }
 
         /**
          * @ngdoc method
-         * @methodOf dhis2-integration-add-edit-general:IntegrationAddEditGeneralController
+         * @methodOf dhis2-integration-add-edit-general:IntegrationAddEditController
          * @name saveIntegration
          *
          * @description
          * Updates the integration and return to the integration list on success.
          */
         function saveIntegration() {
-            $state.go('openlmis.administration.dhis2.integration', {}, {});
+            var promise;
+
+            if (vm.integration.id) {
+                promise = new IntegrationResource().update(vm.integration);
+            } else {
+                promise = new IntegrationResource().create(vm.integration);
+            }
+
+            return promise.then(function() {
+                goToIntegrationList(true);
+            });
         }
 
         function arrayDays() {

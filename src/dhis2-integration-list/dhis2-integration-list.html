@@ -1,0 +1,34 @@
+<section class="openlmis-table-container">
+    <button type="text" class="add" ui-sref='.add'>{{'dhis2IntegrationList.addSchedule' | message}}</button>
+    <table>
+        <caption ng-if="!vm.integrations || vm.integrations.length === 0">
+            {{'dhis2IntegrationList.noIntegrations' | message}}
+        </caption>
+        <thead>
+            <tr>
+                <th>{{'dhis2IntegrationList.name' | message}}</th>
+                <th>{{'dhis2IntegrationList.program' | message}}</th>
+                <th>{{'dhis2IntegrationList.cronExpression' | message}}</th>
+                <th>{{'dhis2IntegrationList.configuration' | message}}</th>
+                <th>{{'dhis2IntegrationList.actions' | message}}</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="integration in vm.integrations">
+                <td>{{integration.name}}</td>
+                <td>{{vm.programs[integration.programId].name}}</td>
+                <td>{{integration.cronExpression}}</td>
+                <td>{{integration.configuration.name}}</td>
+                <td>
+                    <button class="primary" ui-sref=".edit({id: integration.id})">{{'dhis2IntegrationList.edit' | message}}</button>
+                    <button class="danger" ng-click="vm.deleteIntegration(integration)">{{'dhis2IntegrationList.delete' | message}}</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <openlmis-pagination
+        list="vm.integrations"
+        paged-list="vm.items"/>
+</section>
+
