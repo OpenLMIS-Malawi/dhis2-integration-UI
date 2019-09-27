@@ -19,14 +19,14 @@
 
     /**
      * @ngdoc controller
-     * @name dhis2.controller:Dhis2TabController
+     * @name dhis2.controller:Dhis2Controller
      *
      * @description
      * Exposes method for adding/removing user roles.
      */
     angular
         .module('dhis2')
-        .controller('Dhis2TabController', controller);
+        .controller('Dhis2Controller', controller);
 
     controller.$inject = [];
 
@@ -38,11 +38,11 @@
 
         /**
          * @ngdoc method
-         * @methodOf dhis2.controller:Dhis2TabController
+         * @methodOf dhis2.controller:Dhis2Controller
          * @name $onInit
          *
          * @description
-         * Initialization method of the Dhis2TabController.
+         * Initialization method of the Dhis2Controller.
          */
 
         function onInit() {

@@ -27,13 +27,9 @@
             label: 'dhis2.serviceName',
             url: '/dhis2',
             accessRights: [ADMINISTRATION_RIGHTS.DHIS2_MANAGEMENT],
-            views: {
-                '@openlmis': {
-                    templateUrl: 'dhis2/dhis2.html',
-                    controller: 'Dhis2TabController',
-                    controllerAs: 'vm'
-                }
-            }
+            controller: 'Dhis2Controller',
+            templateUrl: 'dhis2/dhis2.html',
+            controllerAs: 'vm'
         });
     }
 })();
