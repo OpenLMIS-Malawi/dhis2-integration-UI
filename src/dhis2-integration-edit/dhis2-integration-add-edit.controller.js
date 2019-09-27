@@ -82,8 +82,6 @@
          * Method that is executed on initiating IntegrationAddEditController.
          */
         function onInit() {
-            vm.days = arrayDays();
-
             vm.integration = integration;
             vm.programs = programs;
             vm.configurations = configurations;
@@ -123,14 +121,6 @@
             return promise.then(function() {
                 goToIntegrationList(true);
             });
-        }
-
-        function arrayDays() {
-            var array = [];
-            for (var xx = 0; xx < 31; xx ++) {
-                array[xx] = xx + 1;
-            }
-            return array;
         }
 
     }
