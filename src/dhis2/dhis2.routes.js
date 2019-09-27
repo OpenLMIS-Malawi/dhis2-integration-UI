@@ -21,7 +21,7 @@
 
     routes.$inject = ['$stateProvider', 'ADMINISTRATION_RIGHTS'];
 
-    function routes($stateProvider) {
+    function routes($stateProvider, ADMINISTRATION_RIGHTS) {
         $stateProvider.state('openlmis.administration.dhis2', {
             showInNavigation: true,
             label: 'dhis2.serviceName',
