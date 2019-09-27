@@ -11,7 +11,7 @@
                             <label for="integration">{{'dhis2ExecutionManual.integration' | message}}</label>
                             <select id="integration" 
                                 ng-model="vm.selectedIntegration"
-                                ng-options="integration as integration for integration in vm.integrations"
+                                ng-options="integration as integration.name for integration in vm.integrations"
                                 required>
                             </select>
                         </div>
