@@ -18,7 +18,7 @@
     'use strict';
 
     angular
-        .module('dhis2-execution-manual')
+        .module('dhis2-execution')
         .factory('ManualExecutionDataBuilder', ManualExecutionDataBuilder);
 
     ManualExecutionDataBuilder.$inject = ['ManualExecution'];

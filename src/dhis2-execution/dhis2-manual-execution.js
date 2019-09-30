@@ -19,13 +19,13 @@
 
     /**
      * @ngdoc service
-     * @name dhis2-execution-manual.ManualExecution
+     * @name dhis2-execution.ManualExecution
      *
      * @description
      * Represents a single execution item.
      */
     angular
-        .module('dhis2-execution-manual')
+        .module('dhis2-execution')
         .factory('ManualExecution', ManualExecution);
 
     function ManualExecution() {
@@ -34,7 +34,7 @@
 
         /**
          * @ngdoc method
-         * @methodOf dhis2-execution-manual.ManualExecution
+         * @methodOf dhis2-execution.ManualExecution
          * @name ManualExecution
          *
          * @description

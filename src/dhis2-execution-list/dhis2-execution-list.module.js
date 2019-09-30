@@ -32,8 +32,7 @@
         'referencedata-facility',
         'referencedata-user',
         'dhis2',
-        'dhis2-execution',
-        'dhis2-execution-manual'
+        'dhis2-execution'
     ]);
 
 })();

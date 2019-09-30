@@ -19,40 +19,40 @@
 
     /**
      * @ngdoc controller
-     * @name dhis2-execution-manual:ExecutionManualController
+     * @name dhis2-integration-execute:IntegrationExecuteController
      *
      * @description
      * Controller for managing manual execution view screen.
      */
     angular
-        .module('dhis2-execution-manual')
-        .controller('ExecutionManualController', controller);
+        .module('dhis2-integration-execute')
+        .controller('IntegrationExecuteController', controller);
 
-    controller.$inject = ['$state', 'ExecutionResource', 'integrations', 'periods'];
+    controller.$inject = ['$state', '$stateParams', 'ExecutionResource', 'periods'];
 
-    function controller($state, ExecutionResource, integrations, periods) {
+    function controller($state, $stateParams, ExecutionResource, periods) {
 
         var vm = this;
 
         vm.$onInit = onInit;
-        vm.goToExecutionList  = goToExecutionList;
+        vm.goToIntegrationList  = goToIntegrationList;
         vm.startManualExecution = startManualExecution;
 
         /**
          * @ngdoc property
-         * @propertyOf dhis2-execution-manual:ExecutionManualController
-         * @name integrations
-         * @type {Array}
+         * @propertyOf dhis2-integration-execute:IntegrationExecuteController
+         * @name integrationId
+         * @type {String}
          *
 
          * @description
-         * List of all integrations.
+         * A integration UUID.
          */
-        vm.integrations = undefined;
+        vm.integrationId = undefined;
 
         /**
          * @ngdoc property
-         * @propertyOf dhis2-execution-manual:ExecutionManualController
+         * @propertyOf dhis2-integration-execute:IntegrationExecuteController
          * @name periods
          * @type {Object}
          *
@@ -63,34 +63,32 @@
 
         /**
          * @ngdoc method
-         * @propertyOf dhis2-execution-manual:ExecutionManualController
+         * @propertyOf dhis2-integration-execute:IntegrationExecuteController
          * @name $onInit
          *
          * @description
-         * Method that is executed on initiating ExecutionManualController.
+         * Method that is executed on initiating IntegrationExecuteController.
          */
         function onInit() {
-            vm.integrations = integrations;
+            vm.integrationId = $stateParams.id;
             vm.periods = periods;
         }
 
         /**
          * @ngdoc method
-         * @methodOf dhis2-execution-manual:ExecutionManualController
+         * @methodOf dhis2-integration-execute:IntegrationExecuteController
          * @name goToExecutionList
          *
          * @description
          * Redirects to execution list screen.
          */
-        function goToExecutionList(reload) {
-            $state.go('openlmis.administration.dhis2.executions', {}, {
-                reload: reload
-            });
+        function goToIntegrationList() {
+            $state.go('openlmis.administration.dhis2.integrations', {}, {});
         }
 
         /**
          * @ngdoc method
-         * @methodOf dhis2-execution-manual:ExecutionManualController
+         * @methodOf dhis2-integration-execute:IntegrationExecuteController
          * @name startManualExecution
          *
          * @description
@@ -99,11 +97,13 @@
         function startManualExecution() {
             return new ExecutionResource()
                 .startManualExecution({
-                    integrationId: vm.selectedIntegration.id,
+                    integrationId: vm.integrationId,
                     periodId: vm.selectedPeriod.id
                 })
                 .then(function() {
-                    goToExecutionList(true);
+                    $state.go('openlmis.administration.dhis2.executions', {}, {
+                        realod: true
+                    });
                 });
 
         }

@@ -1,9 +1,0 @@
-{
-    "dhis2ExecutionManual.integration":"Integration",
-    "dhis2ExecutionManual.period":"Period",
-    "dhis2ExecutionManual.description":"Description",
-    "dhis2ExecutionManual.startManualExecution":"Start manual execution",
-    "dhis2ExecutionManual.startManualExecution.description": "For manual execution Integration to DHIS-2 Integration Layer, please fill below and click the \"Start manual execution\" button",
-    "dhis2ExecutionManual.cancel":"Cancel"
-    
-}

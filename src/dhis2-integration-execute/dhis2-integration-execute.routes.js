@@ -18,26 +18,19 @@
     'use strict';
 
     angular
-        .module('dhis2-execution-manual')
+        .module('dhis2-integration-execute')
         .config(dhis2ExecutionManualRoutes);
 
     dhis2ExecutionManualRoutes.$inject = ['modalStateProvider'];
 
     function dhis2ExecutionManualRoutes(modalStateProvider) {
 
-        modalStateProvider.state('openlmis.administration.dhis2.executions.manual', {
-            controller: 'ExecutionManualController',
+        modalStateProvider.state('openlmis.administration.dhis2.integrations.execute', {
+            controller: 'IntegrationExecuteController',
             controllerAs: 'vm',
-            templateUrl: 'dhis2-execution-manual/dhis2-execution-manual.html',
-            url: '/manual',
+            templateUrl: 'dhis2-integration-execute/dhis2-integration-execute.html',
+            url: ':id/execute',
             resolve: {
-                integrations: function(IntegrationResource) {
-                    return new IntegrationResource()
-                        .query()
-                        .then(function(page) {
-                            return page.content;
-                        });
-                },
                 periods: function(ProcessingPeriodResource) {
                     return new ProcessingPeriodResource()
                         .query({

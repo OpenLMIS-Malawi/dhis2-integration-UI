@@ -18,12 +18,12 @@
     'use strict';
 
     /**
-     * @module dhis2-execution-manual
+     * @module dhis2-integration-execute
      *
      * @description
      * Responsible for providing integration service.
      */
-    angular.module('dhis2-execution-manual', [
+    angular.module('dhis2-integration-execute', [
         'dhis2-execution'
     ]);
 
