@@ -3,6 +3,5 @@
     "dhis2IntegrationEdit.cancel":"Cancel",
     "dhis2IntegrationEdit.program": "Program",
     "dhis2IntegrationEdit.period": "Period",
-    "dhis2IntegrationEdit.configuration": "Configuration",
-    "dhis2IntegrationEdit.name": "Name"
+    "dhis2IntegrationEdit.configuration": "Configuration"
 }

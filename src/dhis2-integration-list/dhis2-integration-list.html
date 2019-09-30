@@ -6,7 +6,6 @@
         </caption>
         <thead>
             <tr>
-                <th>{{'dhis2IntegrationList.name' | message}}</th>
                 <th>{{'dhis2IntegrationList.program' | message}}</th>
                 <th>{{'dhis2IntegrationList.cronExpression' | message}}</th>
                 <th>{{'dhis2IntegrationList.configuration' | message}}</th>
@@ -16,7 +15,6 @@
         </thead>
         <tbody>
             <tr ng-repeat="integration in vm.integrations">
-                <td>{{integration.name}}</td>
                 <td>{{vm.programs[integration.programId].name}}</td>
                 <td><openlmis-cron-selection ng-model="integration.cronExpression" read-only="true"/></td>
                 <td>{{integration.configuration.name}}</td>
