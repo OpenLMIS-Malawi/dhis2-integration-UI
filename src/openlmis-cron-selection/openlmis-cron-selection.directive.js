@@ -36,27 +36,28 @@
         .module('openlmis-cron-selection')
         .directive('openlmisCronSelection', openlmisCronSelectionDirective);
 
-    openlmisCronSelectionDirective.$inject = ['CRON_REGEX', 'SIMPLE_CRON_REGEX', 'WEEKDAYS', 'DAYS', 'OCCURRENCES'];
+    openlmisCronSelectionDirective.$inject = ['CRON_REGEX', 'SIMPLE_CRON_REGEX', 'WEEKDAYS', 'OCCURRENCES'];
 
-    function openlmisCronSelectionDirective(CRON_REGEX, SIMPLE_CRON_REGEX, WEEKDAYS, DAYS, OCCURRENCES) {
+    function openlmisCronSelectionDirective(CRON_REGEX, SIMPLE_CRON_REGEX, WEEKDAYS, OCCURRENCES) {
         return {
             link: link,
             templateUrl: 'openlmis-cron-selection/openlmis-cron-selection.html',
             require: 'ngModel',
             scope: {
                 ngRequired: '=',
-                ngDisabled: '='
+                ngDisabled: '=',
+                readOnly: '='
             },
             restrict: 'E'
         };
 
         function link(scope, _, __, ngModelCtrl) {
             scope.weekdays = WEEKDAYS;
-            scope.days = DAYS;
             scope.occurrences = OCCURRENCES;
 
             scope.validateHour = validateHour;
             scope.validateMinute = validateMinute;
+            scope.validateDay = validateDay;
             scope.validateCronExpression = validateCronExpression;
             // Malawi: add months
             scope.isMonthly = isMonthly;
@@ -67,27 +68,30 @@
             ngModelCtrl.$formatters.push(modelToViewValue);
             ngModelCtrl.$parsers.push(viewToModelValue);
             ngModelCtrl.$render = function() {
-                scope.occurrence = evaluateOccurrence(ngModelCtrl.$viewValue.weekday);
+                scope.occurrence = evaluateOccurrence(ngModelCtrl.$viewValue.weekday, ngModelCtrl.$viewValue.day);
                 scope.weekday = scope.weekdays[ngModelCtrl.$viewValue.weekday];
-                scope.day = scope.days[ngModelCtrl.$viewValue.day];
+                scope.day = ngModelCtrl.$viewValue.day;
                 scope.hour = ngModelCtrl.$viewValue.hour;
                 scope.minute = ngModelCtrl.$viewValue.minute;
                 scope.cronExpression = ngModelCtrl.$viewValue.cronExpression;
                 scope.isComplex = ngModelCtrl.$viewValue.isComplex;
             };
 
-            scope.$watch('cronExpression', handleScopeChange);
             scope.$watch('occurrence', handleScopeChange);
             scope.$watch('weekday', handleScopeChange);
-            scope.$watch('minute', handleScopeChange);
+            scope.$watch('day', handleScopeChange);
             scope.$watch('hour', handleScopeChange);
+            scope.$watch('minute', handleScopeChange);
+            scope.$watch('cronExpression', handleScopeChange);
 
             function handleScopeChange(newVal, oldVal) {
-                var weekday = evaluateWeekday(scope.occurrence, convertWeekdayToNumber(scope.weekdays, scope.weekday),
-                    evaluateDefaultForWeekly(oldVal, newVal));
+                var weekday = evaluateWeekday(scope.occurrence,
+                        convertWeekdayToNumber(scope.weekdays, scope.weekday),
+                        evaluateDefaultForWeekly(oldVal, newVal)),
+                    day = evaluateDay(scope.occurrence, scope.day);
 
                 ngModelCtrl.$setViewValue(buildViewValue(
-                    scope.minute, scope.hour, weekday, scope.cronExpression, scope.isComplex
+                    scope.minute, scope.hour, day, weekday, scope.cronExpression, scope.isComplex
                 ));
             }
 
@@ -96,12 +100,13 @@
                     var split = modelValue.split(' '),
                         minute = split[1],
                         hour = split[2],
+                        day = split[3],
                         weekday = split[5],
                         cronExpression = modelValue;
                 }
                 var isComplex = modelValue ? isComplexCron(modelValue) : false;
 
-                return buildViewValue(minute, hour, weekday, cronExpression, isComplex);
+                return buildViewValue(minute, hour, day, weekday, cronExpression, isComplex);
             }
 
             function viewToModelValue(viewValue) {
@@ -109,7 +114,7 @@
                     return isValidCron(viewValue.cronExpression) ? viewValue.cronExpression : '';
                 }
                 if (isViewValueValid(viewValue)) {
-                    return buildModelValue(viewValue.minute, viewValue.hour, viewValue.weekday);
+                    return buildModelValue(viewValue.minute, viewValue.hour, viewValue.day, viewValue.weekday);
                 }
                 return '';
             }
@@ -134,16 +139,32 @@
                 }
             }
 
-            function evaluateOccurrence(weekday) {
-                if (weekday) {
-                    var DAILY = '*';
+            function evaluateOccurrence(weekday, day) {
+                var DAILY = '*';
+
+                if (!weekday && !day) {
+                    return;
+                }
+
+                if (day === DAILY) {
                     return weekday === DAILY ? OCCURRENCES.DAILY : OCCURRENCES.WEEKLY;
                 }
+
+                return OCCURRENCES.MONTHLY;
+            }
+
+            function evaluateDay(occurrence, day) {
+                if (isDaily(occurrence, OCCURRENCES) || isWeekly(occurrence, OCCURRENCES)) {
+                    return '*';
+                } else if (isMonthly(occurrence, OCCURRENCES)) {
+                    return day;
+                }
+                return undefined;
             }
 
             function evaluateWeekday(occurrence, weekday, defaultForWeekly) {
                 var DAILY = '*';
-                if (isDaily(occurrence, OCCURRENCES)) {
+                if (isDaily(occurrence, OCCURRENCES) || isMonthly(occurrence, OCCURRENCES)) {
                     return DAILY;
                 } else if (isWeekly(occurrence, OCCURRENCES)) {
                     return weekday === undefined ? defaultForWeekly : weekday;
@@ -178,8 +199,17 @@
         }
     }
 
+    // Malawi: add months
+    function validateDay(day, isComplex, ngDisabled) {
+        if (!ngDisabled && day && !isComplex && !isBetween(day, 1, 31)) {
+            return 'openlmisCronSelection.dayOutOfRange';
+        }
+    }
+    // --- ends here --- 
+
     function isViewValueValid(viewValue) {
         return isWeekdayValid(viewValue.weekday)
+            && isDayValid(viewValue.day)
             && isHourValid(viewValue.hour)
             && isMinuteValid(viewValue.minute);
     }
@@ -198,13 +228,19 @@
             && isBetween(minute, 0, 59);
     }
 
+    // Malawi: add months
+    function isDayValid(day) {
+        return day && (day === '*' || isBetween(day, 1, 31));
+    }
+    // --- ends here --- 
+
     function isBetween(number, start, end) {
         return number >= start
             && number <= end;
     }
 
-    function buildModelValue(minute, hour, weekday) {
-        return '0 ' + minute + ' ' + hour + ' * * ' + weekday;
+    function buildModelValue(minute, hour, day, weekday) {
+        return '0 ' + minute + ' ' + hour + ' ' + day + ' * ' + weekday;
     }
 
     function convertWeekdayToNumber(weekdays, weekday) {
@@ -213,10 +249,11 @@
         return index > -1 ? index : undefined;
     }
 
-    function buildViewValue(minute, hour, weekday, cronExpression, isComplex) {
+    function buildViewValue(minute, hour, day, weekday, cronExpression, isComplex) {
         return {
             minute: minute,
             hour: hour,
+            day: day,
             weekday: weekday,
             cronExpression: cronExpression,
             isComplex: isComplex

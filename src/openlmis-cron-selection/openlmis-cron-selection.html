@@ -1,4 +1,4 @@
-<div class="openlmis-cron-selection" ng-show="!isComplex">
+<div class="openlmis-cron-selection" ng-show="!readOnly && !isComplex">
 
     <div openlmis-invalid>
         <select id="occurrence"
@@ -8,19 +8,22 @@
             ng-disabled="ngDisabled"></select>
     </div>
     <!-- Malawi: monthly schedule -->
-    <div ng-show="isMonthly(occurrence, occurrences)">{{'openlmisCronSelection.on' | message}}</div>
+    <div ng-show="isMonthly(occurrence, occurrences)">{{'openlmisCronSelection.onDay' | message}}</div>
 
-    <div openlmis-invalid
-        ng-show="isMonthly(occurrence, occurrences)">
+    <div class="input-control"
+        openlmis-invalid="{{validateDay(day, isComplex, ngDisabled) | message}}"
+        ng-show="isMonthly(occurrence, occurrences)"
+        input-control>
 
-        <select
-            id="day"
+        <input id="day"
+            type="text"
+            positive-integer
             ng-model="day"
-            ng-options="option as option for option in days"
-            ng-required="!ngDisabled && ngRequired && !isComplex && isMonthly(occurrence, occurrences)"
-            ng-disabled="ngDisabled"
-            ></select>
+            ng-required="!ngDisabled && ngRequired && !isComplex"
+            ng-disabled="ngDisabled"/>
     </div>
+
+    <div ng-show="isMonthly(occurrence, occurrences)">{{'openlmisCronSelection.ofMonth' | message}}</div>
     <!-- --- ends here --- -->
     <div ng-show="isWeekly(occurrence, occurrences)">{{'openlmisCronSelection.on' | message}}</div>
 
@@ -66,7 +69,7 @@
 </div>
 
 <div class="input-control"
-    ng-show="isComplex"
+    ng-show="!readOnly && isComplex"
     input-control
     openlmis-invalid="{{validateCronExpression(cronExpression, isComplex, ngDisabled) | message}}">
 
@@ -76,3 +79,25 @@
         ng-disabled="ngDisabled"
         ng-required="!ngDisabled && ngRequired && isComplex"/>
 </div>
+
+<!-- Malawi: read only-->
+<div ng-show="readOnly">
+    <div ng-show="!isComplex">
+        {{occurrence | message}},
+        <span ng-show="isMonthly(occurrence, occurrences)">{{'openlmisCronSelection.onDay' | message}}</span>
+        <span ng-show="isMonthly(occurrence, occurrences)">{{day}}</span>
+        <span ng-show="isMonthly(occurrence, occurrences)">{{'openlmisCronSelection.ofMonth' | message}}</span>
+        <span ng-show="isWeekly(occurrence, occurrences)">{{'openlmisCronSelection.on' | message}}</span>
+        <span ng-show="isWeekly(occurrence, occurrences)">{{weekday | message}}</span>
+        {{'openlmisCronSelection.at' | message}}
+        <span ng-show="hour < 10">0{{hour}}</span>
+        <span ng-show="hour >= 10">{{hour}}</span>
+        :
+        <span ng-show="minute < 10">0{{minute}}</span>
+        <span ng-show="minute >= 10">{{minute}}</span>
+    </div>
+    <div ng-show="isComplex">
+        {{cronExpression}}
+    </div>
+</div>
+<!-- --- ends here --- -->

@@ -35,6 +35,7 @@ describe('<openlmis-cron-selection/>', function() {
         this.scope.cronExpression = '0 30 13 * * *';
         this.scope.ngRequired = true;
         this.scope.ngDisabled = false;
+        this.scope.readOnly = false;
 
         var translations = {
             'openlmisCronSelection.weekly': 'weekly',

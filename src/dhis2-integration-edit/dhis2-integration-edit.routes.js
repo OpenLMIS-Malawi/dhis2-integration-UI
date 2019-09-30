@@ -26,7 +26,7 @@
     function dhis2IntegrationEditRoutes(modalStateProvider) {
 
         modalStateProvider.state('openlmis.administration.dhis2.integrations.edit', {
-            controller: 'IntegrationAddEditGeneralController',
+            controller: 'IntegrationAddEditController',
             controllerAs: 'vm',
             templateUrl: 'dhis2-integration-edit/dhis2-integration-edit.html',
             url: '/:id/edit',

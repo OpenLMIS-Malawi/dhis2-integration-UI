@@ -3,7 +3,7 @@
     "dhis2IntegrationList.noIntegrations": "No schedule integration found.",
     "dhis2IntegrationList.name": "Name",
     "dhis2IntegrationList.program": "Program",
-    "dhis2IntegrationList.cronExpression": "Cron expression",
+    "dhis2IntegrationList.cronExpression": "Period",
     "dhis2IntegrationList.configuration": "Selected configuration",
     "dhis2IntegrationList.actions": "Actions",
     "dhis2IntegrationList.edit": "Edit",

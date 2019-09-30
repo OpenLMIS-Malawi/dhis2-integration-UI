@@ -57,7 +57,9 @@
                 name: 'dhis2.configurations'
             }];
 
-            $state.go('openlmis.administration.dhis2.executions');
+            if ($state.is('openlmis.administration.dhis2')) {
+                $state.go('openlmis.administration.dhis2.executions');
+            }
         }
 
     }

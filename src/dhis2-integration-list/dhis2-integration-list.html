@@ -18,7 +18,7 @@
             <tr ng-repeat="integration in vm.integrations">
                 <td>{{integration.name}}</td>
                 <td>{{vm.programs[integration.programId].name}}</td>
-                <td>{{integration.cronExpression}}</td>
+                <td><openlmis-cron-selection ng-model="integration.cronExpression" read-only="true"/></td>
                 <td>{{integration.configuration.name}}</td>
                 <td>
                     <button class="primary" ui-sref=".edit({id: integration.id})">{{'dhis2IntegrationList.edit' | message}}</button>

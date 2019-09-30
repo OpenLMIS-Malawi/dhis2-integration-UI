@@ -35,8 +35,8 @@
             '[0-5]?[0-9] ' +
             //hour, 0 - 23 allowed
             '([0-1][0-9]|2[0-3]|[0-9]) ' +
-            //day, only every day allowed
-            '\\* ' +
+            //day, only every day or once a month allowed
+            '(\\*|[1-31]) ' +
             //month, only every day allowed
             '\\* ' +
             //weekday, only daily or once a week allowed
