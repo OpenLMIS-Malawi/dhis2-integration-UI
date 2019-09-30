@@ -2,6 +2,6 @@
     "dhis2IntegrationEdit.editIntegration":"Edit integration",
     "dhis2IntegrationEdit.cancel":"Cancel",
     "dhis2IntegrationEdit.program": "Program",
-    "dhis2IntegrationEdit.period": "Period",
+    "dhis2IntegrationEdit.schedule": "Schedule",
     "dhis2IntegrationEdit.configuration": "Configuration"
 }

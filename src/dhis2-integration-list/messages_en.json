@@ -1,9 +1,8 @@
 {
     "dhis2IntegrationList.addSchedule": "Add schedule",
     "dhis2IntegrationList.noIntegrations": "No schedule integration found.",
-    "dhis2IntegrationList.name": "Name",
     "dhis2IntegrationList.program": "Program",
-    "dhis2IntegrationList.cronExpression": "Period",
+    "dhis2IntegrationList.schedule": "Schedule",
     "dhis2IntegrationList.configuration": "Selected configuration",
     "dhis2IntegrationList.actions": "Actions",
     "dhis2IntegrationList.edit": "Edit",
