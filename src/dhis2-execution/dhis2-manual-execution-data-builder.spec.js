@@ -28,6 +28,7 @@
         ManualExecutionDataBuilder.prototype.withProgramId = withProgramId;
         ManualExecutionDataBuilder.prototype.withFacilityId = withFacilityId;
         ManualExecutionDataBuilder.prototype.withPeriodId = withPeriodId;
+        ManualExecutionDataBuilder.prototype.withDescription = withDescription;
         ManualExecutionDataBuilder.prototype.build = build;
         ManualExecutionDataBuilder.prototype.buildJson = buildJson;
 
@@ -40,6 +41,7 @@
             this.programId = 'P' + instanceNumber;
             this.facilityId = 'F' + instanceNumber;
             this.periodId = 'PP' + instanceNumber;
+            this.description = 'test-description';
         }
 
         function withProgramId(programId) {
@@ -57,6 +59,11 @@
             return this;
         }
 
+        function withDescription(description) {
+            this.description = description;
+            return this;
+        }
+
         function build() {
             return new ManualExecution(this.buildJson());
         }
@@ -65,7 +72,8 @@
             return {
                 programId: this.programId,
                 facilityId: this.facilityId,
-                periodId: this.periodId
+                periodId: this.periodId,
+                description: this.description
             };
         }
 

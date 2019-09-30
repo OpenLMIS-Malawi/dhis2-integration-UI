@@ -62,6 +62,18 @@
         vm.periods = undefined;
 
         /**
+         * @ngdoc property
+         * @propertyOf dhis2-integration-execute:IntegrationExecuteController
+         * @name description
+         * @type {String}
+         *
+
+         * @description
+         * A description for this manual execution.
+         */
+        vm.description = undefined;
+
+        /**
          * @ngdoc method
          * @propertyOf dhis2-integration-execute:IntegrationExecuteController
          * @name $onInit
@@ -98,7 +110,8 @@
             return new ExecutionResource()
                 .startManualExecution({
                     integrationId: vm.integrationId,
-                    periodId: vm.selectedPeriod.id
+                    periodId: vm.selectedPeriod.id,
+                    description: vm.description
                 })
                 .then(function() {
                     $state.go('openlmis.administration.dhis2.executions', {}, {

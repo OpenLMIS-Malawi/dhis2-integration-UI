@@ -3,5 +3,6 @@
     "dhis2IntegrationEdit.cancel":"Cancel",
     "dhis2IntegrationEdit.program": "Program",
     "dhis2IntegrationEdit.schedule": "Schedule",
+    "dhis2IntegrationEdit.description": "Description",
     "dhis2IntegrationEdit.configuration": "Configuration"
 }

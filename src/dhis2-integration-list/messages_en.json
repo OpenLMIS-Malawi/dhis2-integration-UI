@@ -3,6 +3,7 @@
     "dhis2IntegrationList.noIntegrations": "No schedule integration found.",
     "dhis2IntegrationList.program": "Program",
     "dhis2IntegrationList.schedule": "Schedule",
+    "dhis2IntegrationEdit.description": "Description",
     "dhis2IntegrationList.configuration": "Selected configuration",
     "dhis2IntegrationList.actions": "Actions",
     "dhis2IntegrationList.edit": "Edit",

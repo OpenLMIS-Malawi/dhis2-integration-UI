@@ -8,6 +8,7 @@
             <tr>
                 <th>{{'dhis2IntegrationList.program' | message}}</th>
                 <th>{{'dhis2IntegrationEdit.schedule' | message}}</th>
+                <th>{{'dhis2IntegrationEdit.description' | message}}</th>
                 <th>{{'dhis2IntegrationList.configuration' | message}}</th>
                 <th>{{'dhis2IntegrationList.actions' | message}}</th>
                 
@@ -17,6 +18,7 @@
             <tr ng-repeat="integration in vm.integrations">
                 <td>{{vm.programs[integration.programId].name}}</td>
                 <td><openlmis-cron-selection ng-model="integration.cronExpression" read-only="true"/></td>
+                <td>{{integration.description}}</td>
                 <td>{{integration.configuration.name}}</td>
                 <td>
                     <button class="primary" ui-sref=".edit({id: integration.id})">{{'dhis2IntegrationList.edit' | message}}</button>

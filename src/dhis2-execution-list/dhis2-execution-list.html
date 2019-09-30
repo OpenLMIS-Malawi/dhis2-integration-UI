@@ -9,6 +9,7 @@
                 <th>{{'dhis2ExecutionList.endDate' | message}}</th>
                 <th>{{'dhis2ExecutionList.relevantPeriod' | message}}</th>
                 <th>{{'dhis2ExecutionList.manualExecution' | message}}</th>
+                <th>{{'dhis2ExecutionList.description' | message}}</th>
                 <th>{{'dhis2ExecutionList.result' | message}}</th>
             </tr>
         </thead>
@@ -18,6 +19,7 @@
                 <td>{{execution.endDate}}</td>
                 <td>{{vm.periods[execution.processingPeriodId].name}}</td>
                 <td><i ng-class="{'icon-ok':execution.manualExecution}"/></td>
+                <td>{{execution.description}}</td>
                 <td>
                     <ul class="list-unstyled" ng-if="execution.response">
                         <li>{{'dhis2ExecutionList.status' | message}}: {{execution.response.statusCode}}</li>

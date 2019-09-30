@@ -47,6 +47,7 @@
             this.id = json.id;
             this.programId = json.programId;
             this.cronExpression = json.cronExpression;
+            this.description = json.description;
             this.configuration = json.configuration;
         }
     }

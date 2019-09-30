@@ -30,6 +30,7 @@
         ExecutionDataBuilder.prototype.withProgramId = withProgramId;
         ExecutionDataBuilder.prototype.withFacilityId = withFacilityId;
         ExecutionDataBuilder.prototype.withProcessingPeriodId = withProcessingPeriodId;
+        ExecutionDataBuilder.prototype.withDescription = withDescription;
         ExecutionDataBuilder.prototype.withTargetUrl = withTargetUrl;
         ExecutionDataBuilder.prototype.withStartDate = withStartDate;
         ExecutionDataBuilder.prototype.withEndDate = withEndDate;
@@ -48,6 +49,7 @@
             this.programId = 'P' + instanceNumber;
             this.facilityId = 'F' + instanceNumber;
             this.processingPeriodId = 'PP' + instanceNumber;
+            this.description = 'test-description';
             this.targetUrl = 'http://test.execution';
             this.startDate = new Date('2019-01-01');
             this.endDate = new Date('2019-01-02');
@@ -80,6 +82,11 @@
 
         function withProcessingPeriodId(processingPeriodId) {
             this.processingPeriodId = processingPeriodId;
+            return this;
+        }
+
+        function withDescription(description) {
+            this.description = description;
             return this;
         }
 
@@ -116,6 +123,7 @@
                 programId: this.programId,
                 facilityId: this.facilityId,
                 processingPeriodId: this.processingPeriodId,
+                description: this.description,
                 targetUrl: this.targetUrl,
                 startDate: this.startDate,
                 endDate: this.endDate,

@@ -8,6 +8,9 @@
     <label for="period">{{'dhis2IntegrationEdit.schedule' | message}}</label>
     <openlmis-cron-selection ng-model="vm.integration.cronExpression" read-only="false" required/>
 
+    <label for="description">{{'dhis2IntegrationEdit.description' | message}}</label>
+    <input id="description" type="text" ng-model="vm.integration.description"/>
+
     <label for="configuration">{{'dhis2IntegrationEdit.configuration' | message}}</label>
     <select id="configuration" ng-model="vm.integration.configuration"
         ng-options="configuration as configuration.name for configuration in vm.configurations"
