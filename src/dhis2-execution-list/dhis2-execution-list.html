@@ -16,8 +16,8 @@
         </thead>
         <tbody>
             <tr ng-repeat="execution in vm.executions">
-                <td>{{execution.startDate}}</td>
-                <td>{{execution.endDate}}</td>
+                <td>{{execution.startDate | openlmisDatetime}}</td>
+                <td>{{execution.endDate | openlmisDatetime}}</td>
                 <td>{{vm.periods[execution.processingPeriodId].name}}</td>
                 <td><i ng-class="{'icon-ok':execution.manualExecution}"/></td>
                 <td>{{execution.description}}</td>
