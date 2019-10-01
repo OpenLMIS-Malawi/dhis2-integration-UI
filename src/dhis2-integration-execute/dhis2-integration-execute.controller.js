@@ -28,9 +28,13 @@
         .module('dhis2-integration-execute')
         .controller('IntegrationExecuteController', controller);
 
-    controller.$inject = ['$state', '$stateParams', 'ExecutionResource', 'periods'];
+    controller.$inject = [
+        '$state', '$stateParams', 'ExecutionResource',
+        'loadingModalService', 'periods'
+    ];
 
-    function controller($state, $stateParams, ExecutionResource, periods) {
+    function controller($state, $stateParams, ExecutionResource,
+                        loadingModalService, periods) {
 
         var vm = this;
 
@@ -107,6 +111,7 @@
          * Start manual execution and return to the execution list on success.
          */
         function startManualExecution() {
+            loadingModalService.open();
             return new ExecutionResource()
                 .startManualExecution({
                     integrationId: vm.integrationId,
