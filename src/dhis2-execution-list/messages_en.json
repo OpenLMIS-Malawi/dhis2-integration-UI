@@ -10,5 +10,6 @@
     "dhis2ExecutionList.result": "Result",
     "dhis2ExecutionList.targetUrl": "Target URL",
     "dhis2ExecutionList.status": "Status",
-    "dhis2ExecutionList.responseBody": "Response body"
+    "dhis2ExecutionList.responseBody": "Response body",
+    "dhis2ExecutionList.refresh": "Refresh"
 }

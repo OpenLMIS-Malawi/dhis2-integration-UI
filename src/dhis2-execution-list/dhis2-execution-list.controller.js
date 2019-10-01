@@ -28,13 +28,14 @@
         .module('dhis2-execution-list')
         .controller('ExecutionListController', controller);
 
-    controller.$inject = [ 'executions', 'periodsMap' ];
+    controller.$inject = [ '$state', '$stateParams', 'executions', 'periodsMap' ];
 
-    function controller(executions, periodsMap) {
+    function controller($state, $stateParams, executions, periodsMap) {
 
         var vm = this;
 
         vm.$onInit = onInit;
+        vm.refreshPage = refreshPage;
 
         /**
          * @ngdoc method
@@ -47,6 +48,12 @@
         function onInit() {
             vm.executions = executions;
             vm.periods = periodsMap;
+        }
+
+        function refreshPage() {
+            $state.go($state.current, $stateParams, {
+                reload: true
+            });
         }
 
     }
