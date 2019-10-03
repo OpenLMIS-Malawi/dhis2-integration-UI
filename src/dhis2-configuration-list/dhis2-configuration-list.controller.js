@@ -40,6 +40,7 @@
 
         vm.$onInit = onInit;
         vm.deleteConfiguration = deleteConfiguration;
+        vm.refreshState = refreshState;
 
         /**
          * @ngdoc method

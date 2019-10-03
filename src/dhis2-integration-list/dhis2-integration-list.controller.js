@@ -42,7 +42,7 @@
 
         vm.$onInit = onInit;
         vm.deleteIntegration = deleteIntegration;
-
+        vm.refreshState = refreshState;
         /**
          * @ngdoc method
          * @propertyOf dhis2-integration-list:IntegrationListController
