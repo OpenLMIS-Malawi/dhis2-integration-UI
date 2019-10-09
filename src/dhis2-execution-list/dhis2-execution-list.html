@@ -12,6 +12,7 @@
                 <th>{{'dhis2ExecutionList.manualExecution' | message}}</th>
                 <th>{{'dhis2ExecutionList.description' | message}}</th>
                 <th>{{'dhis2ExecutionList.result' | message}}</th>
+                <th>{{'dhis2ExecutionList.actions' | message}}</th>
             </tr>
         </thead>
         <tbody>
@@ -23,12 +24,12 @@
                 <td>{{execution.description}}</td>
                 <td>
                     <ul class="list-unstyled" ng-if="execution.response">
-                        <li>{{'dhis2ExecutionList.status' | message}}: {{execution.response.statusCode}}</li>
-                        <li>
-                            {{'dhis2ExecutionList.responseBody' | message}}:
-                            <pre>{{execution.response.body}}</pre>
-                        </li>
+                        <li>{{'dhis2ExecutionList.status' | message}}: {{execution.response.statusCode | status}}</li>
                     </ul>
+                </td>
+                <td>
+                    <button class="primary" ui-sref='.responsebody({id: execution.id})'>{{'dhis2ExecutionList.responseBody' | message}}</button>
+                    <button class="primary" ui-sref='.requestbody({id: execution.id})'>{{'dhis2ExecutionList.requestBody' | message}}</button>
                 </td>
             </tr>
         </tbody>

@@ -1,7 +1,8 @@
 {
     "dhis2ExecutionList.navigation": "DHIS2 Integration",
     "dhis2ExecutionList.manualExecution": "Manual execution",
-    "dhis2ExecutionList.noExecutions": "No synchronization-request submissions found.",
+    "dhis2ExecutionList.noExecutions": "No logs found.",
+    "dhis2ExecutionList.actions": "Actions",
     "dhis2ExecutionList.search": "Search",
     "dhis2ExecutionList.startDate": "Submission start date",
     "dhis2ExecutionList.endDate": "Submission end date",
@@ -11,5 +12,7 @@
     "dhis2ExecutionList.targetUrl": "Target URL",
     "dhis2ExecutionList.status": "Status",
     "dhis2ExecutionList.responseBody": "Response body",
-    "dhis2ExecutionList.refresh": "Refresh"
+    "dhis2ExecutionList.requestBody": "Request body",
+    "dhis2ExecutionList.refresh": "Refresh",
+    "dhis2ExecutionList.cancel": "Cancel"
 }
