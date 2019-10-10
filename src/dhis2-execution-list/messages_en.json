@@ -13,6 +13,8 @@
     "dhis2ExecutionList.status": "Status",
     "dhis2ExecutionList.responseBody": "Response body",
     "dhis2ExecutionList.requestBody": "Request body",
+    "dhis2ExecutionList.showResponse": "Show response",
+    "dhis2ExecutionList.showRequest": "Show request",
     "dhis2ExecutionList.refresh": "Refresh",
     "dhis2ExecutionList.cancel": "Cancel"
 }
