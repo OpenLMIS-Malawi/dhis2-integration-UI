@@ -16,5 +16,6 @@
     "dhis2ExecutionList.showResponse": "Show response",
     "dhis2ExecutionList.showRequest": "Show request",
     "dhis2ExecutionList.refresh": "Refresh",
-    "dhis2ExecutionList.cancel": "Cancel"
+    "dhis2ExecutionList.cancel": "Cancel",
+    "dhis2ExecutionList.executedBy": "Executed by"
 }

@@ -30,10 +30,8 @@ describe('status filter', function() {
     });
 
     it('should return message for ', function() {
-        // this.messageService.get.andReturn('Right Name');
 
         expect(this.statusFilter(202)).toEqual('Accepted(202)');
-        // expect(this.messageService.get).toHaveBeenCalledWith('adminRoleForm.rightName');
     });
 
 });

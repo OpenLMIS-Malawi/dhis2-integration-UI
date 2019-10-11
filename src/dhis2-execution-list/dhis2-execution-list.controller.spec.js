@@ -20,10 +20,13 @@ describe('ExecutionListController', function() {
         module('referencedata-period');
 
         inject(function($injector) {
+            this.$q = $injector.get('$q');
             this.$controller = $injector.get('$controller');
             this.$state = $injector.get('$state');
+            this.$rootScope = $injector.get('$rootScope');
             this.ExecutionDataBuilder = $injector.get('ExecutionDataBuilder');
             this.PeriodDataBuilder = $injector.get('PeriodDataBuilder');
+            this.UserDataBuilder = $injector.get('UserDataBuilder');
         });
 
         this.executions = [
@@ -41,6 +44,15 @@ describe('ExecutionListController', function() {
             return periodsMap;
         }, {});
 
+        this.users = [
+            new this.UserDataBuilder().buildReferenceDataUserJson(),
+            new this.UserDataBuilder().buildReferenceDataUserJson()
+        ];
+
+        this.usersMap = {};
+        this.usersMap[this.users[0].id] = this.users[0];
+        this.usersMap[this.users[1].id] = this.users[1];
+
         this.stateParams = {
             page: 0,
             size: 10
@@ -49,11 +61,14 @@ describe('ExecutionListController', function() {
         this.vm = this.$controller('ExecutionListController', {
             executions: this.executions,
             periodsMap: this.periodsMap,
+            usersMap: this.usersMap,
+            users: this.users,
             $stateParams: this.stateParams
         });
         this.vm.$onInit();
 
         spyOn(this.$state, 'go').andReturn();
+        spyOn(this.vm, 'showUser').andReturn(this.$q.resolve());
     });
 
     describe('onInit', function() {
@@ -64,6 +79,20 @@ describe('ExecutionListController', function() {
 
         it('should expose periods', function() {
             expect(this.vm.periods).toEqual(this.periodsMap);
+        });
+
+        it('should expose users map', function() {
+            expect(this.vm.usersMap).toEqual(this.usersMap);
+        });
+    });
+
+    describe('showUser', function() {
+
+        it('should call showUser method', function() {
+            this.vm.showUser(this.users[0]);
+            this.$rootScope.$apply();
+
+            expect(this.vm.showUser).toHaveBeenCalledWith(this.users[0]);
         });
     });
 

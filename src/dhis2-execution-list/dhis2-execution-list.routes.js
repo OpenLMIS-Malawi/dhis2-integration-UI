@@ -63,8 +63,21 @@
                         periodsMap[period.id] = period;
                         return periodsMap;
                     }, {});
+                },
+                users: function(ReferenceDataUserResource) {
+                    return new ReferenceDataUserResource().query()
+                        .then(function(users) {
+                            return users.content;
+                        });
+                },
+                usersMap: function(users) {
+                    return users.reduce(toUsersMap, {});
                 }
             }
         });
+    }
+    function toUsersMap(usersMap, user) {
+        usersMap[user.id] = user;
+        return usersMap;
     }
 })();

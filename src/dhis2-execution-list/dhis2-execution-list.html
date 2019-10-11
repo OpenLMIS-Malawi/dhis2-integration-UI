@@ -9,7 +9,7 @@
                 <th>{{'dhis2ExecutionList.startDate' | message}}</th>
                 <th>{{'dhis2ExecutionList.endDate' | message}}</th>
                 <th>{{'dhis2ExecutionList.relevantPeriod' | message}}</th>
-                <th>{{'dhis2ExecutionList.manualExecution' | message}}</th>
+                <th>{{'dhis2ExecutionList.executedBy' | message}}</th>
                 <th>{{'dhis2ExecutionList.description' | message}}</th>
                 <th>{{'dhis2ExecutionList.result' | message}}</th>
                 <th>{{'dhis2ExecutionList.actions' | message}}</th>
@@ -20,7 +20,7 @@
                 <td>{{execution.startDate | openlmisDatetime}}</td>
                 <td>{{execution.endDate | openlmisDatetime}}</td>
                 <td>{{vm.periods[execution.processingPeriodId].name}}</td>
-                <td><i ng-class="{'icon-ok':execution.manualExecution}"/></td>
+                <td>{{vm.showUser(vm.usersMap[execution.userId])}}</td>
                 <td>{{execution.description}}</td>
                 <td>
                     <ul class="list-unstyled" ng-if="execution.response">

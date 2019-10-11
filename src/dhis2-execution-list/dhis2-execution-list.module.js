@@ -30,6 +30,7 @@
         'referencedata',
         'referencedata-program',
         'referencedata-facility',
+        'referencedata-system-notification',
         'referencedata-user',
         'dhis2',
         'dhis2-execution'

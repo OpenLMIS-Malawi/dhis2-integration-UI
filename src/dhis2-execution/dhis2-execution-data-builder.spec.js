@@ -35,6 +35,7 @@
         ExecutionDataBuilder.prototype.withStartDate = withStartDate;
         ExecutionDataBuilder.prototype.withEndDate = withEndDate;
         ExecutionDataBuilder.prototype.withResponse = withResponse;
+        ExecutionDataBuilder.prototype.withUserId = withUserId;
         ExecutionDataBuilder.prototype.build = build;
         ExecutionDataBuilder.prototype.buildJson = buildJson;
 
@@ -58,6 +59,7 @@
                 statusCode: '200',
                 body: 'Message OK'
             };
+            this.userId = 'UID' + instanceNumber;
         }
 
         function withId(id) {
@@ -100,15 +102,20 @@
             return this;
         }
 
+        function withResponse(resopnseDate, statusCode, body) {
+            this.response.resopnseDate = resopnseDate;
+            this.response.statusCode = statusCode;
+            this.response.body = body;
+            return this;
+        }
+
         function withEndDate(endDate) {
             this.endDate = endDate;
             return this;
         }
 
-        function withResponse(resopnseDate, statusCode, body) {
-            this.response.resopnseDate = resopnseDate;
-            this.response.statusCode = statusCode;
-            this.response.body = body;
+        function withUserId(userId) {
+            this.userId = userId;
             return this;
         }
 
@@ -127,7 +134,8 @@
                 targetUrl: this.targetUrl,
                 startDate: this.startDate,
                 endDate: this.endDate,
-                response: this.response
+                response: this.response,
+                userId: this.userId
             };
         }
 

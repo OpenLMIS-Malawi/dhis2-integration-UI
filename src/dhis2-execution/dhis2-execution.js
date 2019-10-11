@@ -54,6 +54,7 @@
             this.startDate = json.startDate;
             this.endDate = json.endDate;
             this.response = json.response;
+            this.userId = json.userId;
         }
     }
 })();

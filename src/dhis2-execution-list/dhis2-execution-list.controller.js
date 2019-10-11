@@ -28,15 +28,37 @@
         .module('dhis2-execution-list')
         .controller('ExecutionListController', controller);
 
-    controller.$inject = [ '$state', '$stateParams', 'executions', 'periodsMap' ];
+    controller.$inject = [ '$state', '$stateParams', 'executions', 'periodsMap', 'usersMap', 'users'];
 
-    function controller($state, $stateParams, executions, periodsMap) {
+    function controller($state, $stateParams, executions, periodsMap, usersMap, users) {
 
         var vm = this;
 
         vm.$onInit = onInit;
         vm.refreshPage = refreshPage;
+        vm.showUser = showUser;
 
+        /**
+         * @ngdoc property
+         * @propertyOf dhis2-execution-list:ExecutionListController
+         * @name usersMap
+         * @type {Object}
+         *
+         * @description
+         * Map of users who started execution.
+         */
+        vm.usersMap = undefined;
+
+        /**
+         * @ngdoc property
+         * @propertyOf dhis2-execution-list:ExecutionListController
+         * @name users
+         * @type {Array}
+         *
+         * @description
+         * List of users who started execution.
+         */
+        vm.users = undefined;
         /**
          * @ngdoc method
          * @propertyOf dhis2-execution-list:ExecutionListController
@@ -47,7 +69,26 @@
          */
         function onInit() {
             vm.executions = executions;
+            vm.usersMap = usersMap;
+            vm.users = users;
             vm.periods = periodsMap;
+        }
+
+        /**
+         * @ngdoc method
+         * @propertyOf dhis2-execution-list:ExecutionListController
+         * @name showUser
+         *
+         * @description
+         * This method shows username.
+         */
+        function showUser(user) {
+            if (user) {
+                return user.firstName + ' ' + user.lastName;
+            }
+            if (!user) {
+                return 'System';
+            }
         }
 
         function refreshPage() {
