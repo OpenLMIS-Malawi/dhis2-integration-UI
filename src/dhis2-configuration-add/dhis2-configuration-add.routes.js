@@ -33,9 +33,7 @@
             resolve: {
                 configuration: function(Configuration) {
                     return new Configuration({
-                        authenticationDetails: {
-                            type: 'BASIC'
-                        }
+                        authenticationDetails: {}
                     });
                 }
             }

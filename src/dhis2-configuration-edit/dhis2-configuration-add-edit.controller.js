@@ -48,7 +48,20 @@
          */
         function onInit() {
             vm.configuration = configuration;
+            vm.isBearer = isBearer;
+            vm.isBasic = isBasic;
         }
+
+        /**
+         * @ngdoc property
+         * @propertyOf dhis2-configuration-add-edit-general:ConfigurationAddEditController
+         * @name authType
+         * @type {Object}
+         *
+         * @description
+         * Holds options for authType.
+         */
+        vm.authTypes = ['BASIC', 'BEARER'];
 
         /**
          * @ngdoc method
@@ -74,7 +87,6 @@
          */
         function saveConfiguration() {
             var promise;
-
             if (vm.configuration.id) {
                 promise = new ConfigurationResource().update(vm.configuration);
             } else {
@@ -84,6 +96,14 @@
             return promise.then(function() {
                 goToConfigurationList(true);
             });
+        }
+
+        function isBearer(authType) {
+            return authType === vm.authTypes[1];
+        }
+
+        function isBasic(authType) {
+            return authType === vm.authTypes[0];
         }
 
     }
