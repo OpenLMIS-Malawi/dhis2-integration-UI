@@ -2,6 +2,7 @@
     "dhis2IntegrationEdit.editIntegration":"Edit integration",
     "dhis2IntegrationEdit.cancel":"Cancel",
     "dhis2IntegrationEdit.program": "Program",
+    "dhis2IntegrationEdit.program.description": "To create a schedule integration for all programs, please leave this field blank",
     "dhis2IntegrationEdit.schedule": "Schedule",
     "dhis2IntegrationEdit.description": "Description",
     "dhis2IntegrationEdit.configuration": "Configuration"

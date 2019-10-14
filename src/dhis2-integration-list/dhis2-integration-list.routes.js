@@ -44,6 +44,9 @@
                     var programIds = integrations
                         .map(function(integration) {
                             return integration.programId;
+                        })
+                        .filter(function(programId) {
+                            return programId;
                         });
 
                     return new ProgramResource()

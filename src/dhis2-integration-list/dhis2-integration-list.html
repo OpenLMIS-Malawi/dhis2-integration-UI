@@ -11,12 +11,12 @@
                 <th>{{'dhis2IntegrationEdit.description' | message}}</th>
                 <th>{{'dhis2IntegrationList.configuration' | message}}</th>
                 <th>{{'dhis2IntegrationList.actions' | message}}</th>
-                
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="integration in vm.integrations">
-                <td>{{vm.programs[integration.programId].name}}</td>
+                <td ng-if="integration.programId">{{vm.programs[integration.programId].name}}</td>
+                <td ng-if="!integration.programId">{{ 'dhis2IntegrationList.allPrograms' | message }}</td>
                 <td><openlmis-cron-selection ng-model="integration.cronExpression" read-only="true"/></td>
                 <td>{{integration.description}}</td>
                 <td>{{integration.configuration.name}}</td>
