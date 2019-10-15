@@ -28,14 +28,15 @@
         .module('dhis2-execution-response-body')
         .controller('ExecutionResponseBodyController', controller);
 
-    controller.$inject = ['$state', 'execution'];
+    controller.$inject = ['$state', 'execution', '$filter'];
 
-    function controller($state, execution) {
+    function controller($state, execution, $filter) {
 
         var vm = this;
 
         vm.$onInit = onInit;
         vm.goToExecutionList  = goToExecutionList;
+        vm.formatResponse = formatResponse;
 
         /**
          * @ngdoc property
@@ -73,6 +74,13 @@
             $state.go('openlmis.administration.dhis2.executions', {}, {
                 reload: reload
             });
+        }
+
+        function formatResponse() {
+            if (!vm.execution.response) {
+                return 'No response';
+            }
+            return $filter('json')(angular.fromJson(vm.execution.response.body));
         }
     }
 })();
