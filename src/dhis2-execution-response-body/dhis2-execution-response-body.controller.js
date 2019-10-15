@@ -80,6 +80,9 @@
             if (!vm.execution.response) {
                 return 'No response';
             }
+            if (!vm.execution.response.body) {
+                return 'No response body';
+            }
             return $filter('json')(angular.fromJson(vm.execution.response.body));
         }
     }
