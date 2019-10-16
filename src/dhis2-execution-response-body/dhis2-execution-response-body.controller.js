@@ -83,7 +83,11 @@
             if (!vm.execution.response.body) {
                 return 'No response body';
             }
-            return $filter('json')(angular.fromJson(vm.execution.response.body));
+            try {
+                return $filter('json')(angular.fromJson(vm.execution.response.body));
+            } catch (e) {
+                return vm.execution.response.body;
+            }
         }
     }
 })();
