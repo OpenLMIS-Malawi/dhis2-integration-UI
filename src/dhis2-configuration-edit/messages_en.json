@@ -5,7 +5,7 @@
     "dhis2ConfigurationEdit.password":"Password",
     "dhis2ConfigurationEdit.name":"Name",
     "dhis2ConfigurationEdit.targetUrl":"Target URL",
-    "dhis2ConfigurationEdit.editConfiguration":"Edit configuration",
+    "dhis2ConfigurationEdit.editConfiguration":"Edit Configuration",
     "dhis2ConfigurationEdit.cancel":"Cancel",
     "dhis2ConfigurationEdit.configurationAddSuccessfully":"The configuration has been added successfully!",
     "dhis2ConfigurationEdit.configurationEditSuccessfully":"The configuration has been edited successfully!",
