@@ -11,7 +11,7 @@
     <div ng-show="isMonthly(occurrence, occurrences)">{{'openlmisCronSelection.onDay' | message}}</div>
 
     <div class="input-control"
-        openlmis-invalid="{{validateDay(day, isComplex, ngDisabled) | message}}"
+        openlmis-invalid="{{validateDay(day, isComplex, ngDisabled, isMonthly(occurrence, occurrences)) | message}}"
         ng-show="isMonthly(occurrence, occurrences)"
         input-control>
 

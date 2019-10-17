@@ -200,8 +200,8 @@
     }
 
     // Malawi: add months
-    function validateDay(day, isComplex, ngDisabled) {
-        if (!ngDisabled && day && !isComplex && !isBetween(day, 1, 31)) {
+    function validateDay(day, isComplex, ngDisabled, isMonthly) {
+        if (!ngDisabled && isMonthly && day && !isComplex && !isBetween(day, 1, 31)) {
             return 'openlmisCronSelection.dayOutOfRange';
         }
     }
