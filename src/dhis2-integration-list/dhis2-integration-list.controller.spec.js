@@ -30,6 +30,7 @@ describe('IntegrationListController', function() {
             this.IntegrationResource = $injector.get('IntegrationResource');
             this.loadingModalService = $injector.get('loadingModalService');
             this.confirmService = $injector.get('confirmService');
+            this.notificationService = $injector.get('notificationService');
         });
 
         this.integration = new this.IntegrationDataBuilder().build();
@@ -64,6 +65,8 @@ describe('IntegrationListController', function() {
         spyOn(this.confirmService, 'confirmDestroy').andReturn(this.$q.resolve());
         spyOn(this.loadingModalService, 'open').andReturn(this.$q.resolve());
         spyOn(this.IntegrationResource.prototype, 'delete').andReturn(this.$q.resolve());
+        spyOn(this.notificationService, 'success').andReturn();
+
     });
 
     describe('onInit', function() {
@@ -92,6 +95,8 @@ describe('IntegrationListController', function() {
             expect(this.loadingModalService.open).toHaveBeenCalled();
             expect(this.IntegrationResource.prototype.delete).toHaveBeenCalledWith(this.integration);
             expect(this.$state.go).toHaveBeenCalled();
+            expect(this.notificationService.success)
+                .toHaveBeenCalledWith('dhis2IntegrationList.scheduleDeleted');
         });
     });
 
@@ -101,6 +106,8 @@ describe('IntegrationListController', function() {
             this.vm.refreshState();
 
             expect(this.$state.go).toHaveBeenCalled();
+            expect(this.notificationService.success)
+                .toHaveBeenCalledWith('dhis2IntegrationList.pageHasBeenRefreshed');
         });
     });
 });

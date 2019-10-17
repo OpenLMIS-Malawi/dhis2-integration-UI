@@ -28,9 +28,9 @@
         .module('dhis2-configuration-edit')
         .controller('ConfigurationAddEditController', controller);
 
-    controller.$inject = ['$state', 'configuration', 'ConfigurationResource'];
+    controller.$inject = ['$state', 'configuration', 'ConfigurationResource', 'notificationService'];
 
-    function controller($state, configuration, ConfigurationResource) {
+    function controller($state, configuration, ConfigurationResource, notificationService) {
 
         var vm = this;
 
@@ -86,16 +86,24 @@
          * Updates the configuration and return to the configuration list on success.
          */
         function saveConfiguration() {
-            var promise;
             if (vm.configuration.id) {
-                promise = new ConfigurationResource().update(vm.configuration);
-            } else {
-                promise = new ConfigurationResource().create(vm.configuration);
+                return new ConfigurationResource()
+                    .update(vm.configuration)
+                    .then(function() {
+                        goToConfigurationList(true);
+                    })
+                    .then(function() {
+                        notificationService.success('dhis2ConfigurationEdit.configurationEditSuccessfully');
+                    });
             }
-
-            return promise.then(function() {
-                goToConfigurationList(true);
-            });
+            return new ConfigurationResource()
+                .create(vm.configuration)
+                .then(function() {
+                    goToConfigurationList(true);
+                })
+                .then(function() {
+                    notificationService.success('dhis2ConfigurationEdit.configurationAddSuccessfully');
+                });
         }
 
         function isBearer(authType) {

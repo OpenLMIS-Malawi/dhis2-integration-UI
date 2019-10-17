@@ -27,6 +27,7 @@ describe('ExecutionListController', function() {
             this.ExecutionDataBuilder = $injector.get('ExecutionDataBuilder');
             this.PeriodDataBuilder = $injector.get('PeriodDataBuilder');
             this.UserDataBuilder = $injector.get('UserDataBuilder');
+            this.notificationService = $injector.get('notificationService');
         });
 
         this.executions = [
@@ -69,6 +70,7 @@ describe('ExecutionListController', function() {
 
         spyOn(this.$state, 'go').andReturn();
         spyOn(this.vm, 'showUser').andReturn(this.$q.resolve());
+        spyOn(this.notificationService, 'success').andReturn();
     });
 
     describe('onInit', function() {
@@ -102,6 +104,8 @@ describe('ExecutionListController', function() {
             this.vm.refreshPage();
 
             expect(this.$state.go).toHaveBeenCalled();
+            expect(this.notificationService.success)
+                .toHaveBeenCalledWith('dhis2ExecutionList.pageHasBeenRefreshed');
         });
     });
 });

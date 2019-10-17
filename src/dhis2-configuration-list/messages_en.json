@@ -8,5 +8,8 @@
     "dhis2ConfigurationList.actions": "Actions",
     "dhis2ConfigurationList.edit": "Edit",
     "dhis2ConfigurationList.delete": "Delete",
-    "dhis2ConfigurationList.delete.confirm": "Do you really want to remove the configuration?"
+    "dhis2ConfigurationList.delete.confirm": "Do you really want to remove the configuration?",
+    "dhis2ConfigurationList.configurationDeletedSuccessfully" : "The configuration has been deleted successfully!",
+    "dhis2ConfigurationList.pageHasBeenRefreshed" : "The page has been refreshed."
+    
 }

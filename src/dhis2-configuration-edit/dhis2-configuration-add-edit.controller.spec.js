@@ -30,6 +30,7 @@ describe('ConfigurationAddEditController', function() {
             this.ConfigurationResource = $injector.get('ConfigurationResource');
             this.loadingModalService = $injector.get('loadingModalService');
             this.confirmService = $injector.get('confirmService');
+            this.notificationService = $injector.get('notificationService');
         });
 
         this.configuration = new this.ConfigurationDataBuilder().build();
@@ -48,6 +49,7 @@ describe('ConfigurationAddEditController', function() {
         spyOn(this.$state, 'go').andReturn();
         spyOn(this.ConfigurationResource.prototype, 'update').andReturn(this.$q.resolve());
         spyOn(this.ConfigurationResource.prototype, 'create').andReturn(this.$q.resolve());
+        spyOn(this.notificationService, 'success').andReturn();
     });
 
     describe('onInit', function() {
@@ -67,6 +69,8 @@ describe('ConfigurationAddEditController', function() {
             this.$rootScope.$apply();
 
             expect(this.ConfigurationResource.prototype.create).toHaveBeenCalledWith(this.configuration);
+            expect(this.notificationService.success)
+                .toHaveBeenCalledWith('dhis2ConfigurationEdit.configurationAddSuccessfully');
         });
 
         it('should update configuration', function() {
@@ -74,6 +78,8 @@ describe('ConfigurationAddEditController', function() {
             this.$rootScope.$apply();
 
             expect(this.ConfigurationResource.prototype.update).toHaveBeenCalledWith(this.configuration);
+            expect(this.notificationService.success)
+                .toHaveBeenCalledWith('dhis2ConfigurationEdit.configurationEditSuccessfully');
         });
 
         it('should redirect to the previous state on success', function() {

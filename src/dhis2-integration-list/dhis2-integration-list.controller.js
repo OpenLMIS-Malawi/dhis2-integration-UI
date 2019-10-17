@@ -31,12 +31,12 @@
     controller.$inject = [
         '$state', '$stateParams', '$q', 'IntegrationResource',
         'confirmService', 'loadingModalService', 'integrations',
-        'programsMap'
+        'programsMap', 'notificationService'
     ];
 
     function controller($state, $stateParams, $q, IntegrationResource,
                         confirmService, loadingModalService, integrations,
-                        programsMap) {
+                        programsMap, notificationService) {
 
         var vm = this;
 
@@ -72,6 +72,9 @@
                 })
                 .finally(function() {
                     loadingModalService.close();
+                })
+                .then(function() {
+                    notificationService.success('dhis2IntegrationList.scheduleDeleted');
                 });
         }
 
@@ -79,6 +82,7 @@
             $state.go('openlmis.administration.dhis2.integrations', stateParams, {
                 reload: true
             });
+            notificationService.success('dhis2IntegrationList.pageHasBeenRefreshed');
         }
 
     }

@@ -30,11 +30,11 @@
 
     controller.$inject = [
         '$state', '$stateParams', '$q', 'ConfigurationResource',
-        'confirmService', 'loadingModalService', 'configurations'
+        'confirmService', 'loadingModalService', 'configurations', 'notificationService'
     ];
 
     function controller($state, $stateParams, $q, ConfigurationResource,
-                        confirmService, loadingModalService, configurations) {
+                        confirmService, loadingModalService, configurations, notificationService) {
 
         var vm = this;
 
@@ -65,6 +65,9 @@
                 .then(function() {
                     refreshState($stateParams);
                 })
+                .then(function() {
+                    notificationService.success('dhis2ConfigurationList.configurationDeletedSuccessfully');
+                })
                 .catch(function(error) {
                     return $q.reject(error);
                 })
@@ -77,6 +80,7 @@
             $state.go('openlmis.administration.dhis2.configurations', stateParams, {
                 reload: true
             });
+            notificationService.success('dhis2ConfigurationEdit.pageHasBeenRefreshed');
         }
 
     }

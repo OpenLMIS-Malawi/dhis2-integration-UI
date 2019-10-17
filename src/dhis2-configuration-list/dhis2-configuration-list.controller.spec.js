@@ -29,6 +29,7 @@ describe('ConfigurationListController', function() {
             this.ConfigurationResource = $injector.get('ConfigurationResource');
             this.loadingModalService = $injector.get('loadingModalService');
             this.confirmService = $injector.get('confirmService');
+            this.notificationService = $injector.get('notificationService');
         });
 
         this.configuration = new this.ConfigurationDataBuilder().build();
@@ -52,6 +53,7 @@ describe('ConfigurationListController', function() {
         spyOn(this.confirmService, 'confirmDestroy').andReturn(this.$q.resolve());
         spyOn(this.loadingModalService, 'open').andReturn(this.$q.resolve());
         spyOn(this.ConfigurationResource.prototype, 'delete').andReturn(this.$q.resolve());
+        spyOn(this.notificationService, 'success').andReturn();
     });
 
     describe('onInit', function() {
@@ -76,6 +78,8 @@ describe('ConfigurationListController', function() {
             expect(this.loadingModalService.open).toHaveBeenCalled();
             expect(this.ConfigurationResource.prototype.delete).toHaveBeenCalledWith(this.configuration);
             expect(this.$state.go).toHaveBeenCalled();
+            expect(this.notificationService.success)
+                .toHaveBeenCalledWith('dhis2ConfigurationList.configurationDeletedSuccessfully');
         });
     });
 
@@ -85,6 +89,8 @@ describe('ConfigurationListController', function() {
             this.vm.refreshState();
 
             expect(this.$state.go).toHaveBeenCalled();
+            expect(this.notificationService.success)
+                .toHaveBeenCalledWith('dhis2ConfigurationEdit.pageHasBeenRefreshed');
         });
     });
 });

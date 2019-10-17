@@ -10,5 +10,7 @@
     "dhis2IntegrationList.edit": "Edit",
     "dhis2IntegrationList.execute": "Execute",
     "dhis2IntegrationList.delete": "Delete",
-    "dhis2IntegrationList.delete.confirm": "Do you really want to remove the schedule?"
+    "dhis2IntegrationList.delete.confirm": "Do you really want to remove the schedule?",
+    "dhis2IntegrationList.scheduleDeleted": "The schedule has been deleted successfully!",
+    "dhis2IntegrationList.pageHasBeenRefreshed" : "The page has been refreshed."
 }

@@ -28,9 +28,11 @@
         .module('dhis2-execution-list')
         .controller('ExecutionListController', controller);
 
-    controller.$inject = [ '$state', '$stateParams', 'executions', 'periodsMap', 'usersMap', 'users'];
+    controller.$inject = [ '$state', '$stateParams', 'executions', 'periodsMap',
+        'usersMap', 'users', 'notificationService'];
 
-    function controller($state, $stateParams, executions, periodsMap, usersMap, users) {
+    function controller($state, $stateParams, executions, periodsMap,
+                        usersMap, users, notificationService) {
 
         var vm = this;
 
@@ -95,6 +97,7 @@
             $state.go($state.current, $stateParams, {
                 reload: true
             });
+            notificationService.success('dhis2ExecutionList.pageHasBeenRefreshed');
         }
 
     }

@@ -28,9 +28,11 @@
         .module('dhis2-integration-edit')
         .controller('IntegrationAddEditController', controller);
 
-    controller.$inject = ['$state', 'IntegrationResource', 'integration', 'programs', 'configurations'];
+    controller.$inject = ['$state', 'IntegrationResource', 'integration',
+        'programs', 'configurations', 'notificationService'];
 
-    function controller($state, IntegrationResource, integration, programs, configurations) {
+    function controller($state, IntegrationResource, integration,
+                        programs, configurations, notificationService) {
 
         var vm = this;
 
@@ -110,18 +112,24 @@
          * Updates the integration and return to the integration list on success.
          */
         function saveIntegration() {
-            var promise;
-
             if (vm.integration.id) {
-                promise = new IntegrationResource().update(vm.integration);
-            } else {
-                promise = new IntegrationResource().create(vm.integration);
+                return new IntegrationResource()
+                    .update(vm.integration)
+                    .then(function() {
+                        goToIntegrationList(true);
+                    })
+                    .then(function() {
+                        notificationService.success('dhis2IntegrationEdit.integrationEditSuccessfully');
+                    });
             }
-
-            return promise.then(function() {
-                goToIntegrationList(true);
-            });
+            return new IntegrationResource()
+                .create(vm.integration)
+                .then(function() {
+                    goToIntegrationList(true);
+                })
+                .then(function() {
+                    notificationService.success('dhis2IntegrationEdit.integrationAddSuccessfully');
+                });
         }
-
     }
 })();

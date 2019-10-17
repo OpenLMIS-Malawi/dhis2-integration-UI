@@ -30,11 +30,11 @@
 
     controller.$inject = [
         '$state', '$stateParams', 'ExecutionResource',
-        'loadingModalService', 'periods'
+        'loadingModalService', 'periods', 'notificationService'
     ];
 
     function controller($state, $stateParams, ExecutionResource,
-                        loadingModalService, periods) {
+                        loadingModalService, periods, notificationService) {
 
         var vm = this;
 
@@ -122,6 +122,9 @@
                     $state.go('openlmis.administration.dhis2.executions', {}, {
                         realod: true
                     });
+                })
+                .then(function() {
+                    notificationService.success('dhis2IntegrationExecute.manualExecutionStarted');
                 });
 
         }

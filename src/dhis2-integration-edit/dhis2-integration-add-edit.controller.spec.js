@@ -31,6 +31,7 @@ describe('IntegrationAddEditController', function() {
             this.IntegrationResource = $injector.get('IntegrationResource');
             this.loadingModalService = $injector.get('loadingModalService');
             this.confirmService = $injector.get('confirmService');
+            this.notificationService = $injector.get('notificationService');
         });
 
         this.integration = new this.IntegrationDataBuilder().build();
@@ -61,6 +62,7 @@ describe('IntegrationAddEditController', function() {
         spyOn(this.$state, 'go').andReturn();
         spyOn(this.IntegrationResource.prototype, 'update').andReturn(this.$q.resolve());
         spyOn(this.IntegrationResource.prototype, 'create').andReturn(this.$q.resolve());
+        spyOn(this.notificationService, 'success').andReturn();
     });
 
     describe('onInit', function() {
@@ -88,6 +90,8 @@ describe('IntegrationAddEditController', function() {
             this.$rootScope.$apply();
 
             expect(this.IntegrationResource.prototype.create).toHaveBeenCalledWith(this.integration);
+            expect(this.notificationService.success)
+                .toHaveBeenCalledWith('dhis2IntegrationEdit.integrationAddSuccessfully');
         });
 
         it('should update integration', function() {
@@ -95,6 +99,8 @@ describe('IntegrationAddEditController', function() {
             this.$rootScope.$apply();
 
             expect(this.IntegrationResource.prototype.update).toHaveBeenCalledWith(this.integration);
+            expect(this.notificationService.success)
+                .toHaveBeenCalledWith('dhis2IntegrationEdit.integrationEditSuccessfully');
         });
 
         it('should redirect to the previous state on success', function() {

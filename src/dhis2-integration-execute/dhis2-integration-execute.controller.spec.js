@@ -30,6 +30,7 @@ describe('IntegrationExecuteController', function() {
             this.PeriodDataBuilder = $injector.get('PeriodDataBuilder');
             this.ExecutionResource = $injector.get('ExecutionResource');
             this.loadingModalService = $injector.get('loadingModalService');
+            this.notificationService = $injector.get('notificationService');
         });
 
         this.integration = new this.IntegrationDataBuilder().build();
@@ -56,6 +57,7 @@ describe('IntegrationExecuteController', function() {
         spyOn(this.$state, 'go').andReturn();
         spyOn(this.loadingModalService, 'open').andReturn(this.$q.resolve());
         spyOn(this.ExecutionResource.prototype, 'startManualExecution').andReturn(this.$q.resolve());
+        spyOn(this.notificationService, 'success').andReturn();
     });
 
     describe('onInit', function() {
@@ -89,6 +91,8 @@ describe('IntegrationExecuteController', function() {
                 });
 
             expect(this.$state.go).toHaveBeenCalled();
+            expect(this.notificationService.success)
+                .toHaveBeenCalledWith('dhis2IntegrationExecute.manualExecutionStarted');
         });
     });
 
