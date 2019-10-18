@@ -20,16 +20,28 @@
                 <td>{{execution.startDate | openlmisDatetime}}</td>
                 <td>{{execution.endDate | openlmisDatetime}}</td>
                 <td>{{vm.periods[execution.processingPeriodId].name}}</td>
-                <td>{{vm.showUser(vm.usersMap[execution.userId])}}</td>
+
+                <td ng-if="execution.userId">{{vm.showUser(vm.usersMap[execution.userId])}}</td>
+                <td ng-if="!execution.userId">{{'dhis2ExecutionList.executedBy.system' | message}}</td>
+
                 <td>{{execution.description}}</td>
+
                 <td>
-                    <ul class="list-unstyled" ng-if="execution.response">
-                        <li>{{'dhis2ExecutionList.status' | message}}: {{execution.response.statusCode | status}}</li>
+                    <ul class="list-unstyled">
+                        <li ng-if="execution.status">
+                            {{'dhis2ExecutionList.executionStatus' | message}}:
+                            {{ 'dhis2ExecutionList.executionStatus.' + execution.status | message}}
+                        </li>
+                        <li ng-if="execution.response && execution.response.statusCode">
+                            {{'dhis2ExecutionList.responseStatus' | message}}:
+                            {{ 'dhis2ExecutionList.responseStatus.' + execution.response.statusCode | message}}
+                            ({{execution.response.statusCode}})
+                        </li>
                     </ul>
                 </td>
                 <td>
-                    <button class="primary" ui-sref='.responsebody({id: execution.id})'>{{'dhis2ExecutionList.showResponse' | message}}</button>
-                    <button class="primary" ui-sref='.requestbody({id: execution.id})'>{{'dhis2ExecutionList.showRequest' | message}}</button>
+                    <button ng-if="execution.response" class="primary" ui-sref='.responsebody({id: execution.id})'>{{'dhis2ExecutionList.showResponse' | message}}</button>
+                    <button ng-if="execution.status != 'STARTED'" class="primary" ui-sref='.requestbody({id: execution.id})'>{{'dhis2ExecutionList.showRequest' | message}}</button>
                 </td>
             </tr>
         </tbody>
