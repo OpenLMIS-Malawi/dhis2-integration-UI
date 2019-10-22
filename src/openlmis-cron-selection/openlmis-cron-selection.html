@@ -19,7 +19,7 @@
             type="text"
             positive-integer
             ng-model="day"
-            ng-required="!ngDisabled && ngRequired && !isComplex"
+            ng-required="!ngDisabled && ngRequired && !isComplex && isMonthly(occurrence, occurrences)"
             ng-disabled="ngDisabled"/>
     </div>
 

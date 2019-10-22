@@ -2,7 +2,7 @@
     "openlmisCronSelection.monthly": "Monthly",
     "openlmisCronSelection.weekly": "Weekly",
     "openlmisCronSelection.daily": "Daily",
-    "openlmisCronSelection.dayOutOfRange": "Day must be between 0 and 31",
+    "openlmisCronSelection.dayOutOfRange": "Day must be between 1 and 31",
     "openlmisCronSelection.hourOutOfRange": "Hour must be between 0 and 23",
     "openlmisCronSelection.minuteOutOfRange": "Minute must be between 0 and 59",
     "openlmisCronSelection.invalidCron": "Invalid cron expression",

@@ -6,7 +6,11 @@
     </select>
     
     <label for="period" class="is-required">{{'dhis2IntegrationEdit.schedule' | message}}</label>
-    <openlmis-cron-selection ng-model="vm.integration.cronExpression" read-only="false" required/>
+    <openlmis-cron-selection 
+        ng-required="true"
+        ng-disabled="false"
+        ng-model="vm.integration.cronExpression" 
+        read-only="false"/>
 
     <label for="description">{{'dhis2IntegrationEdit.description' | message}}</label>
     <input id="description" type="text" ng-model="vm.integration.description"/>

@@ -201,7 +201,7 @@
 
     // Malawi: add months
     function validateDay(day, isComplex, ngDisabled, isMonthly) {
-        if (!ngDisabled && isMonthly && day && !isComplex && !isBetween(day, 1, 31)) {
+        if (!ngDisabled && isMonthly && !isComplex && !isBetween(day, 1, 31)) {
             return 'openlmisCronSelection.dayOutOfRange';
         }
     }
