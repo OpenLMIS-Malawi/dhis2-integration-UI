@@ -88,7 +88,7 @@
                 var weekday = evaluateWeekday(scope.occurrence,
                         convertWeekdayToNumber(scope.weekdays, scope.weekday),
                         evaluateDefaultForWeekly(oldVal, newVal)),
-                    day = evaluateDay(scope.occurrence, scope.day);
+                    day = evaluateDay(scope.occurrence, scope);
 
                 ngModelCtrl.$setViewValue(buildViewValue(
                     scope.minute, scope.hour, day, weekday, scope.cronExpression, scope.isComplex
@@ -153,11 +153,14 @@
                 return OCCURRENCES.MONTHLY;
             }
 
-            function evaluateDay(occurrence, day) {
+            function evaluateDay(occurrence, scope) {
                 if (isDaily(occurrence, OCCURRENCES) || isWeekly(occurrence, OCCURRENCES)) {
                     return '*';
                 } else if (isMonthly(occurrence, OCCURRENCES)) {
-                    return day;
+                    if (scope.day === '*') {
+                        scope.day = '';
+                    }
+                    return scope.day;
                 }
                 return undefined;
             }
@@ -183,7 +186,10 @@
     }
 
     // Malawi: add months
-    function isMonthly(occurrence, OCCURRENCES) {
+    function isMonthly(occurrence, OCCURRENCES, day) {
+        if (day === '*') {
+            day = '';
+        }
         return occurrence === OCCURRENCES.MONTHLY;
     }
     // --- ends here --- 
