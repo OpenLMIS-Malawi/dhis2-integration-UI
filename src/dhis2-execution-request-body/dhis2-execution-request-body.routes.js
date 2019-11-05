@@ -29,7 +29,7 @@
             controller: 'ExecutionRequestBodyController',
             controllerAs: 'vm',
             templateUrl: 'dhis2-execution-request-body/dhis2-execution-request-body.html',
-            url: ':id/requestbody',
+            url: '/:id/requestbody',
             resolve: {
                 requestbody: function(RequestBodyResource, RequestBody, $stateParams) {
                     return new RequestBodyResource()

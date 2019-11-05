@@ -29,7 +29,7 @@
             controller: 'ConfigurationAddEditController',
             controllerAs: 'vm',
             templateUrl: 'dhis2-configuration-edit/dhis2-configuration-edit.html',
-            url: ':id/edit',
+            url: '/:id/edit',
             resolve: {
                 configuration: function(ConfigurationResource, Configuration, $stateParams) {
                     return new ConfigurationResource()

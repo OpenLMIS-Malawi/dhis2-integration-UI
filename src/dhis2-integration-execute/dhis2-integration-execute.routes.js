@@ -29,7 +29,7 @@
             controller: 'IntegrationExecuteController',
             controllerAs: 'vm',
             templateUrl: 'dhis2-integration-execute/dhis2-integration-execute.html',
-            url: ':id/execute',
+            url: '/:id/execute',
             resolve: {
                 periods: function(ProcessingPeriodResource) {
                     return new ProcessingPeriodResource()

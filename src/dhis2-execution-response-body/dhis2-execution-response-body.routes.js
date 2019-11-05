@@ -29,7 +29,7 @@
             controller: 'ExecutionResponseBodyController',
             controllerAs: 'vm',
             templateUrl: 'dhis2-execution-response-body/dhis2-execution-response-body.html',
-            url: ':id/responsebody',
+            url: '/:id/responsebody',
             resolve: {
                 execution: function(ExecutionResource, Execution, $stateParams) {
                     return new ExecutionResource()
