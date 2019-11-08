@@ -28,11 +28,13 @@
         .module('dhis2-execution-list')
         .controller('ExecutionListController', controller);
 
-    controller.$inject = [ '$state', '$stateParams', 'executions', 'periodsMap',
-        'usersMap', 'users', 'notificationService'];
+    controller.$inject = [
+        '$state', '$stateParams', 'executions', 'queueItems',
+        'periodsMap', 'usersMap', 'users', 'notificationService'
+    ];
 
-    function controller($state, $stateParams, executions, periodsMap,
-                        usersMap, users, notificationService) {
+    function controller($state, $stateParams, executions, queueItems,
+                        periodsMap, usersMap, users, notificationService) {
 
         var vm = this;
 
@@ -71,6 +73,7 @@
          */
         function onInit() {
             vm.executions = executions;
+            vm.queueItems = queueItems;
             vm.usersMap = usersMap;
             vm.users = users;
             vm.periods = periodsMap;

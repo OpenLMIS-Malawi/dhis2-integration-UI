@@ -40,15 +40,32 @@
                         return new ExecutionResource().query(stateParams);
                     });
                 },
-                periods: function(executions, ProcessingPeriodResource) {
-                    if (!executions || executions.length === 0) {
+                queueItems: function(ExecutionResource) {
+                    return new ExecutionResource().queueItems();
+                },
+                periods: function(executions, queueItems, ProcessingPeriodResource) {
+                    if ((!executions || executions.length === 0)
+                        && (!queueItems || queueItems.length === 0)) {
                         return [];
                     }
 
-                    var periodIds = executions
-                        .map(function(execution) {
-                            return execution.processingPeriodId;
+                    var periodIds = [];
+
+                    if (executions) {
+                        executions.forEach(function(execution) {
+                            if (periodIds.indexOf(execution.processingPeriodId) < 0) {
+                                periodIds.push(execution.processingPeriodId);
+                            }
                         });
+                    }
+
+                    if (queueItems) {
+                        queueItems.forEach(function(queueItem) {
+                            if (periodIds.indexOf(queueItem.processingPeriodId) < 0) {
+                                periodIds.push(queueItem.processingPeriodId);
+                            }
+                        });
+                    }
 
                     return new ProcessingPeriodResource()
                         .query({

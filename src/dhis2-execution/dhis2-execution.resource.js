@@ -30,24 +30,48 @@
         .module('dhis2-execution')
         .factory('ExecutionResource', ExecutionResource);
 
-    ExecutionResource.$inject = ['OpenlmisResource', 'classExtender'];
+    ExecutionResource.$inject = [
+        'OpenlmisResource', 'classExtender',
+        '$resource', 'openlmisUrlFactory'
+    ];
 
-    function ExecutionResource(OpenlmisResource, classExtender) {
+    function ExecutionResource(OpenlmisResource, classExtender,
+                               $resource, openlmisUrlFactory) {
 
         classExtender.extend(ExecutionResource, OpenlmisResource);
 
         ExecutionResource.prototype.startManualExecution = startManualExecution;
+        ExecutionResource.prototype.queueItems = queueItems;
+
         return ExecutionResource;
 
         function ExecutionResource() {
-            this.super('/api/integrationExecutions', {
-                paginated: true
+            var url = '/api/integrationExecutions';
+            var resourceUrl = openlmisUrlFactory(url);
+
+            this.super(url);
+            this.resource = $resource(resourceUrl + '/:id', {}, {
+                query: {
+                    url: resourceUrl,
+                    isArray: false
+                },
+                update: {
+                    method: 'PUT'
+                },
+                queue: {
+                    url: resourceUrl + '/queue',
+                    isArray: true
+                }
             });
             this.originalCreate = OpenlmisResource.prototype.create;
         }
 
         function startManualExecution(manualExecution) {
             return this.originalCreate(manualExecution);
+        }
+
+        function queueItems() {
+            return this.resource.queue();
         }
     }
 })();

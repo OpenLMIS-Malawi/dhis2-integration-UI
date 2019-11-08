@@ -50,6 +50,8 @@ describe('ExecutionListController', function() {
             new this.UserDataBuilder().buildReferenceDataUserJson()
         ];
 
+        this.queueItems = [];
+
         this.usersMap = {};
         this.usersMap[this.users[0].id] = this.users[0];
         this.usersMap[this.users[1].id] = this.users[1];
@@ -61,6 +63,7 @@ describe('ExecutionListController', function() {
 
         this.vm = this.$controller('ExecutionListController', {
             executions: this.executions,
+            queueItems: this.queueItems,
             periodsMap: this.periodsMap,
             usersMap: this.usersMap,
             users: this.users,
@@ -77,6 +80,10 @@ describe('ExecutionListController', function() {
 
         it('should expose executions array', function() {
             expect(this.vm.executions).toEqual(this.executions);
+        });
+
+        it('should expose queueItems array', function() {
+            expect(this.vm.queueItems).toEqual(this.queueItems);
         });
 
         it('should expose periods', function() {
