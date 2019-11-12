@@ -40,8 +40,8 @@
                         return new ExecutionResource().query(stateParams);
                     });
                 },
-                queueItems: function(ExecutionResource) {
-                    return new ExecutionResource().queueItems();
+                queueItems: function(ExecutionQueueResource) {
+                    return new ExecutionQueueResource().query();
                 },
                 periods: function(executions, queueItems, ProcessingPeriodResource) {
                     if ((!executions || executions.length === 0)

@@ -41,7 +41,9 @@ describe('ExecutionResource', function() {
     it('should extend OpenlmisResource', function() {
         new this.ExecutionResource();
 
-        expect(this.OpenlmisResourceMock).toHaveBeenCalledWith('/api/integrationExecutions');
+        expect(this.OpenlmisResourceMock).toHaveBeenCalledWith('/api/integrationExecutions', {
+            paginated: true
+        });
     });
 
     it('should start manual execution', function() {

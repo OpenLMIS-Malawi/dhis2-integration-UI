@@ -19,39 +19,29 @@
 
     /**
      * @ngdoc service
-     * @name dhis2-execution.ExecutionResource
+     * @name dhis2-execution.ExecutionQueueResource
      *
      * @description
-     * Implementation of the ExecutionResource interface. Communicates with the REST API of the OpenLMIS
+     * Implementation of the ExecutionQueueResource interface. Communicates with the REST API of the OpenLMIS
      * server.
      */
 
     angular
         .module('dhis2-execution')
-        .factory('ExecutionResource', ExecutionResource);
+        .factory('ExecutionQueueResource', ExecutionQueueResource);
 
-    ExecutionResource.$inject = [
+    ExecutionQueueResource.$inject = [
         'OpenlmisResource', 'classExtender'
     ];
 
-    function ExecutionResource(OpenlmisResource, classExtender) {
+    function ExecutionQueueResource(OpenlmisResource, classExtender) {
 
-        classExtender.extend(ExecutionResource, OpenlmisResource);
+        classExtender.extend(ExecutionQueueResource, OpenlmisResource);
 
-        ExecutionResource.prototype.startManualExecution = startManualExecution;
+        return ExecutionQueueResource;
 
-        return ExecutionResource;
-
-        function ExecutionResource() {
-            this.super('/api/integrationExecutions', {
-                paginated: true
-            });
-            this.originalCreate = OpenlmisResource.prototype.create;
+        function ExecutionQueueResource() {
+            this.super('/api/integrationExecutionQueue');
         }
-
-        function startManualExecution(manualExecution) {
-            return this.originalCreate(manualExecution);
-        }
-
     }
 })();
