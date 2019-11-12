@@ -41,7 +41,9 @@
         return ExecutionQueueResource;
 
         function ExecutionQueueResource() {
-            this.super('/api/integrationExecutionQueue');
+            this.super('/api/integrationExecutionQueue', {
+                paginated: false
+            });
         }
     }
 })();
