@@ -30,17 +30,20 @@
 
     controller.$inject = [
         '$state', '$stateParams', 'executions', 'queueItems',
-        'periodsMap', 'usersMap', 'users', 'notificationService'
+        'periodsMap', 'usersMap', 'users', 'notificationService',
+        'RequestBodyResource', 'loadingModalService'
     ];
 
     function controller($state, $stateParams, executions, queueItems,
-                        periodsMap, usersMap, users, notificationService) {
+                        periodsMap, usersMap, users, notificationService,
+                        RequestBodyResource, loadingModalService) {
 
         var vm = this;
 
         vm.$onInit = onInit;
         vm.refreshPage = refreshPage;
         vm.showUser = showUser;
+        vm.openRequestBody = openRequestBody;
 
         /**
          * @ngdoc property
@@ -101,6 +104,30 @@
                 reload: true
             });
             notificationService.success('dhis2ExecutionList.pageHasBeenRefreshed');
+        }
+
+        function openRequestBody(data) {
+            console.log(data);
+            loadingModalService.open();
+
+            return new RequestBodyResource()
+                .get(data.id)
+                .then(function(json) {
+                    var fileName = data.description + '.json';
+
+                    var fileToSave = new Blob([JSON.stringify(json, null, '\t')], {
+                        type: 'application/json'
+                    });
+                    var url = URL.createObjectURL(fileToSave);
+
+                    // Create a new anchor element
+                    var a = document.createElement('a');
+                    a.href = url;
+                    a.download = fileName || 'download';
+                    a.click();
+                    a.remove();
+                    loadingModalService.close();
+                });
         }
 
     }
