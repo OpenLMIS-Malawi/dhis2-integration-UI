@@ -107,7 +107,6 @@
         }
 
         function downloadRequestBodyJSON(data) {
-            console.log(data);
             loadingModalService.open();
 
             return new RequestBodyResource()
