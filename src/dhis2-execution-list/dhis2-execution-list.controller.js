@@ -43,7 +43,7 @@
         vm.$onInit = onInit;
         vm.refreshPage = refreshPage;
         vm.showUser = showUser;
-        vm.openRequestBody = openRequestBody;
+        vm.downloadRequestBodyJSON = downloadRequestBodyJSON;
 
         /**
          * @ngdoc property
@@ -106,7 +106,7 @@
             notificationService.success('dhis2ExecutionList.pageHasBeenRefreshed');
         }
 
-        function openRequestBody(data) {
+        function downloadRequestBodyJSON(data) {
             console.log(data);
             loadingModalService.open();
 
