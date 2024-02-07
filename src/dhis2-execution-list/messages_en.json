@@ -92,6 +92,7 @@
     "dhis2ExecutionList.requestBody": "Request Body",
     "dhis2ExecutionList.showResponse": "Show Response",
     "dhis2ExecutionList.showRequest": "Show Request",
+    "dhis2ExecutionList.downloadRequest": "Download Request",
     "dhis2ExecutionList.refresh": "Refresh",
     "dhis2ExecutionList.cancel": "Cancel",
     "dhis2ExecutionList.executedBy": "Executed By",
