@@ -18,6 +18,7 @@ describe('ExecutionListController', function() {
     beforeEach(function() {
         module('dhis2-execution-list');
         module('referencedata-period');
+        module('dhis2-execution-request-body');
 
         inject(function($injector) {
             this.$q = $injector.get('$q');
