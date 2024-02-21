@@ -62,7 +62,7 @@
 
                 <td>{{ 'dhis2ExecutionList.executionStatus.' + execution.status | message}}</td>
                 <td>
-                    <button ng-if="execution.status != 'STARTED'" class="primary" ng-click="vm.downloadRequestBodyJSON(execution)">{{'dhis2ExecutionList.showRequest' | message}}</button>
+                    <button ng-if="execution.status != 'STARTED'" class="primary" ng-click="vm.downloadRequestBodyJSON(execution)">{{'dhis2ExecutionList.downloadRequest' | message}}</button>
                     <button ng-if="execution.response" class="primary" ui-sref='.responsebody({id: execution.id})'>{{'dhis2ExecutionList.showResponse' | message}}</button>
                 </td>
             </tr>
